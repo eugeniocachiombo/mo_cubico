@@ -1,20 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Notify</title>
-    <style>
-        body{
-            padding: 0;
-            margin: 0;
-            background: #222;
-            color: orange;
-        }
-    </style>
-</head>
+<html lang="pt-BR">
+
+@include('inc.head')
+
 <body>
-    {{$slot}}
+    <div class="container-fluid position-relative d-flex p-0">
+        
+        @include('inc.loading')
+
+        @include('inc.sidebar')
+
+
+        <!-- Content Start -->
+        {{$slot}}
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    @include('inc.foot')
 </body>
+
 </html>
