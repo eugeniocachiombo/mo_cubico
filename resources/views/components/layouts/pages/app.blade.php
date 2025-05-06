@@ -4,6 +4,8 @@
 @include('inc.head')
 
 <body>
+    @include('inc.loading')
+    
     {{$slot}}
 
     @include('inc.foot')

@@ -10,7 +10,7 @@
                 <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                     <i class="fa fa-chart-line fa-3x text-primary"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Venda de Hoje</p>
+                        <p class="mb-2">Casas Arrendadas</p>
                         <h6 class="mb-0">$1234</h6>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
                 <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                     <i class="fa fa-chart-bar fa-3x text-primary"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Total de Vendas</p>
+                        <p class="mb-2">Casas Pendentes</p>
                         <h6 class="mb-0">$1234</h6>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                 <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                     <i class="fa fa-chart-area fa-3x text-primary"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Receita de Hoje</p>
+                        <p class="mb-2">Total de Clientes</p>
                         <h6 class="mb-0">$1234</h6>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                     <i class="fa fa-chart-pie fa-3x text-primary"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Receita Total</p>
+                        <p class="mb-2">Total de Contratos</p>
                         <h6 class="mb-0">$1234</h6>
                     </div>
                 </div>
