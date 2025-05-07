@@ -556,7 +556,7 @@
                         <h3 class="text-light mb-4">Fale Conosco</h3>
                         <div class="d-flex mb-2">
                             <i class="bi bi-geo-alt text-primary me-2"></i>
-                            <p class="mb-0">Rua das Palmeiras, 123, São Paulo, Brasil</p>
+                            <p class="mb-0">Maianga, Luanda, Angola</p>
                         </div>
                         <div class="d-flex mb-2">
                             <i class="bi bi-envelope-open text-primary me-2"></i>
@@ -623,7 +623,7 @@
                     <form action="">
                         <div class="input-group">
                             <input type="text" class="form-control border-white p-3" placeholder="Seu e-mail">
-                            <button class="btn btn-primary">Inscrever-se</button>
+                            <button class="btn btn-primary">Contacte-nos</button>
                         </div>
                     </form>
                 </div>
