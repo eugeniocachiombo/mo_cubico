@@ -36,9 +36,10 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="/" class="nav-item nav-link active">Início</a>
-                            <a href="about.html" class="nav-item nav-link">Quem Somos</a>
-                            <a href="about.html" class="nav-item nav-link">Nossa Missão</a>
-                            <a href="contact.html" class="nav-item nav-link">Contactos</a>
+                            <a href="#about" class="nav-item nav-link">Quem Somos</a>
+                            <a href="#mission" class="nav-item nav-link">Nossa Missão</a>
+                            <a href="#team" class="nav-item nav-link">Equipa</a>
+                            <a href="#contact" class="nav-item nav-link">Contactos</a>
                         </div>
                         <div class="d-none d-lg-flex align-items-center py-2">
                             <a class="btn btn-outline-secondary ms-2 py-2" href="{{ route('pages.login') }}">
@@ -60,7 +61,7 @@
     <div class="container-fluid p-5 mb-5 bg-dark text-secondary">
         <div class="row g-5 py-5">
             <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
-                <h1 class="display-4 text-secondary text-center mb-0">Arrendamento de Modo Fácil</h1>
+                <h1 class="display-4 text-secondary text-center mb-0">Encontre aqui o seu novo lar</h1>
             </div>
             <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
                 <img class="img-fluid rounded mb-3"
@@ -103,16 +104,16 @@
             <div class="col-lg-5 mb-5 mb-lg-0 wow fadeIn" data-wow-delay="0.1s" style="min-height: 500px;">
                 <div class="position-relative h-100">
                     <div class="position-absolute top-0 start-0 animate-rotate" style="width: 160px; height: 160px;">
-                        <img class="img-fluid" src="img/about-round.jpg" alt="Logo Empresa">
+                        <img class="img-fluid" src="" alt="">
                     </div>
-                    <img class="position-absolute w-100 h-100 rounded-circle rounded-bottom rounded-end"
-                        src="img/about.jpg" style="object-fit: cover;" alt="Sobre nós">
+                    <img class="position-absolute w-40 h-40 rounded-circle rounded-bottom rounded-end"
+                        src="{{asset('assets/images/logo/whitelogo.png')}}" style="object-fit: cover;" alt="Sobre nós">
                 </div>
             </div>
             <div class="col-lg-7">
                 <div class="mb-4 wow fadeIn" data-wow-delay="0.2s">
                     <h5 class="section-title">Sobre Nós</h5>
-                    <h1 class="display-3 mb-0">Facilitando o Aluguel de Casas com Praticidade</h1>
+                    <h1 class="display-6 mb-0">Facilitando o Aluguel de Casas com Praticidade</h1>
                 </div>
                 <p class="mb-4 wow fadeIn" data-wow-delay="0.3s">
                     Somos uma empresa dedicada a conectar proprietários e inquilinos de forma simples e segura.
@@ -120,23 +121,21 @@
                     conseguem buscar a moradia ideal de forma rápida e eficiente.
                 </p>
                 <div class="row">
-                    <div id="owners" class="col-sm-6 wow fadeIn" data-wow-delay="0.4s">
+                    <div id="owners" style="height: 5px" class="col-sm-6 wow fadeIn" data-wow-delay="0.4s">
                         <div class="bg-light rounded p-4">
-                            <img class="img-fluid bg-primary rounded-circle mb-3" src="img/feature-1.png"
-                                style="width: 80px; height: 80px;" alt="Cadastro de Casas">
+                            <i class="fas fa-home fa-2x text-white"></i>
                             <h4>Cadastro de Casas</h4>
-                            <p class="mb-0">
+                            <p class="mb-0 text-white">
                                 Proprietários podem anunciar suas casas para aluguel de forma fácil,
                                 alcançando um grande número de potenciais inquilinos.
                             </p>
                         </div>
                     </div>
-                    <div id="tenants" class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
+                    <div id="tenants" style="height: 5px" class="col-sm-6 wow fadeIn mb-5" data-wow-delay="0.5s">
                         <div class="bg-light rounded p-4">
-                            <img class="img-fluid bg-primary rounded-circle mb-3" src="img/feature-3.png"
-                                style="width: 80px; height: 80px;" alt="Busca por Casas">
+                            <i class="fas fa-search fa-2x text-white"></i>
                             <h4>Busca por Casas</h4>
-                            <p class="mb-0">
+                            <p class="mb-0 text-white">
                                 Inquilinos encontram o imóvel perfeito usando nossos filtros inteligentes
                                 de busca, localizando rapidamente casas que atendem suas necessidades.
                             </p>
@@ -151,8 +150,8 @@
 
 
     <!-- Fatos Início -->
-    <div id="fatos" class="container-fluid bg-dark facts p-5 my-5">
-        <div class="row gx-5 gy-4 py-5">
+    <div id="fatos" class="container-fluid bg-dark facts p-5 mt-5 " >
+        <div class="row gx-5 gy-4 py-5 mt-5">
             <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.1s">
                 <div class="d-flex">
                     <div class="rounded-circle d-flex align-items-center justify-content-center mb-3"
@@ -205,15 +204,34 @@
     </div>
     <!-- Fatos Fim -->
 
+    <!-- mission Start -->
+    <div id="mission" class="container-fluid p-5">
+        <div class="row gx-5">
+            <div class="col-lg-12">
+                <div class="mb-4 wow fadeIn" data-wow-delay="0.2s">
+                    <h5 class="section-title">Nossa Missão</h5>
+                    <h1 class="display-6 mb-0">Facilitar o sonho de se conseguir um doce lar atendendo sempre as suas necessidades, desejos e expectativas.</h1>
+                </div>
+                <p class=" wow fadeIn" data-wow-delay="0.3s">
+                    Este projeto é referente a uma plataforma web de intermediação imobiliária, 
+                    que conecta os proprietários de imóveis a potenciais compradores e arrendatários, 
+                    oferecendo uma experiência rápida, segura e transparente. 
+                    A proposta busca profissionalizar o sector frente à concorrência informal 
+                    representada pelos intermediários informais, entregando um serviço confiável, 
+                    com atendimento personalizado e tecnologia de ponta.
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- mission End -->
 
 
     <!-- Recursos Início -->
-    <div id="recursos" class="container-fluid feature position-relative p-5 pb-0 mt-5">
+    <div id="recursos" class="container-fluid feature position-relative p-5 pb-0 ">
         <div class="row g-5 gb-5">
             <div class="col-lg-4 col-md-6 wow fadeIn" data-wow-delay="0.1s">
                 <div class="feature-item rounded text-center p-5">
-                    <img class="img-fluid bg-white rounded-circle" src="img/feature-1.png"
-                        style="width: 150px; height: 150px;" alt="Cadastro Fácil">
+                    <i class="fas fa-home fa-3x"></i>
                     <h3 class="my-4">Cadastro Fácil</h3>
                     <p class="text-light">
                         Cadastre seu imóvel rapidamente com fotos, descrição e preço. Simples e prático para alcançar
@@ -225,8 +243,7 @@
             </div>
             <div class="col-lg-4 col-md-6 wow fadeIn" data-wow-delay="0.3s">
                 <div class="feature-item rounded text-center p-5">
-                    <img class="img-fluid bg-white rounded-circle" src="img/feature-2.png"
-                        style="width: 150px; height: 150px;" alt="Busca Inteligente">
+                    <i class="fas fa-search fa-3x"></i>
                     <h3 class="my-4">Busca Inteligente</h3>
                     <p class="text-light">
                         Encontre casas ideais usando filtros por localização, preço, número de quartos e muito mais.
@@ -237,8 +254,7 @@
             </div>
             <div class="col-lg-4 col-md-6 wow fadeIn" data-wow-delay="0.5s">
                 <div class="feature-item rounded text-center p-5">
-                    <img class="img-fluid bg-white rounded-circle" src="img/feature-3.png"
-                        style="width: 150px; height: 150px;" alt="Suporte Personalizado">
+                    <i class="fas fa-headset fa-3x"></i>
                     <h3 class="my-4">Suporte Personalizado</h3>
                     <p class="text-light">
                         Nossa equipe está pronta para ajudar proprietários e inquilinos em todas as etapas do processo.
@@ -258,149 +274,13 @@
     <!-- Recursos Fim -->
 
 
-    <!-- Menu Start -->
-    <div class="container-fluid menu py-5 px-0">
-        <div class="mb-5 text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px; margin: auto;">
-            <h5 class="section-title">Nossos Casas</h5>
-            <h1 class="display-3 mb-0">Lares Que Cuidam do Planeta</h1>
-        </div>
-        <div class="tab-class text-center">
-            <ul class="nav nav-pills d-inline-flex justify-content-center bg-dark text-uppercase rounded-pill mb-5 wow fadeIn"
-                data-wow-delay="0.2s">
-                <li class="nav-item">
-                    <a class="nav-link rounded-pill text-white active" data-bs-toggle="pill" href="#tab-1">Casas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link rounded-pill text-white" data-bs-toggle="pill" href="#tab-2">Apartamentos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link rounded-pill text-white" data-bs-toggle="pill" href="#tab-3">Chalés</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <!-- Casas -->
-                <div id="tab-1" class="tab-pane fade show p-0 active">
-                    <div class="row g-0">
-                        <div class="col-lg-3 col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.1s">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/house-1.jpg" alt="">
-                                <div
-                                    class="position-absolute bottom-0 end-0 mb-4 me-4 py-1 px-3 bg-dark rounded-pill text-primary">
-                                    Casa Solar Vila Verde</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.2s">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/house-2.jpg" alt="">
-                                <div
-                                    class="position-absolute bottom-0 end-0 mb-4 me-4 py-1 px-3 bg-dark rounded-pill text-primary">
-                                    Casa Sustentável Bosque</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.3s">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/house-3.jpg" alt="">
-                                <div
-                                    class="position-absolute bottom-0 end-0 mb-4 me-4 py-1 px-3 bg-dark rounded-pill text-primary">
-                                    Casa Ecovila Aurora</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.4s">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/house-4.jpg" alt="">
-                                <div
-                                    class="position-absolute bottom-0 end-0 mb-4 me-4 py-1 px-3 bg-dark rounded-pill text-primary">
-                                    Casa Verde Horizonte</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Apartamentos -->
-                <div id="tab-2" class="tab-pane fade p-0">
-                    <div class="row g-0">
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/apartment-1.jpg" alt="">
-                                <div
-                                    class="position-absolute bottom-0 end-0 mb-4 me-4 py-1 px-3 bg-dark rounded-pill text-primary">
-                                    Apto Vegano Urbano</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/apartment-2.jpg" alt="">
-                                <div
-                                    class="position-absolute bottom-0 end-0 mb-4 me-4 py-1 px-3 bg-dark rounded-pill text-primary">
-                                    Loft Eco Bela Vista</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/apartment-3.jpg" alt="">
-                                <div
-                                    class="position-absolute bottom-0 end-0 mb-4 me-4 py-1 px-3 bg-dark rounded-pill text-primary">
-                                    Studio Sustentável Centro</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/apartment-4.jpg" alt="">
-                                <div
-                                    class="position-absolute bottom-0 end-0 mb-4 me-4 py-1 px-3 bg-dark rounded-pill text-primary">
-                                    Apto Jardim Solar</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Chalés -->
-                <div id="tab-3" class="tab-pane fade p-0">
-                    <div class="row g-0">
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/chalet-1.jpg" alt="">
-                                <div
-                                    class="position-absolute bottom-0 end-0 mb-4 me-4 py-1 px-3 bg-dark rounded-pill text-primary">
-                                    Chalé Eco Montanha</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/chalet-2.jpg" alt="">
-                                <div
-                                    class="position-absolute bottom-0 end-0 mb-4 me-4 py-1 px-3 bg-dark rounded-pill text-primary">
-                                    Chalé Verde Encanto</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/chalet-3.jpg" alt="">
-                                <div
-                                    class="position-absolute bottom-0 end-0 mb-4 me-4 py-1 px-3 bg-dark rounded-pill text-primary">
-                                    Chalé Floresta Viva</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/chalet-4.jpg" alt="">
-                                <div
-                                    class="position-absolute bottom-0 end-0 mb-4 me-4 py-1 px-3 bg-dark rounded-pill text-primary">
-                                    Chalé Lago Azul</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Menu End -->
-
     <!-- Team Start -->
-    <div class="container-fluid p-5">
+    <div id="team" class="container-fluid p-5">
         <div class="mb-5 text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px; margin: auto;">
             <h5 class="section-title">Nossa Equipe</h5>
-            <h1 class="display-3 mb-0">Pessoas que Transformam Espaços em Experiências</h1>
+            <h1 class="display-6 mb-0">Pessoas que Transformam Espaços em Experiências</h1>
         </div>
-        <div class="row g-5">
+        <div class="row g-5 mt-4">
             <div class="col-lg-4 col-md-6 wow fadeIn" data-wow-delay="0.1s">
                 <div class="team-item position-relative">
                     <div class="position-relative overflow-hidden rounded-circle rounded-bottom rounded-end">
@@ -479,12 +359,7 @@
     <!-- Testimonial Start -->
     <div class="container-fluid p-0 my-5">
         <div class="row g-0">
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" style="min-height: 500px;">
-                <div class="h-100 position-relative overflow-hidden" style="border-top-left-radius: 50%;">
-                    <img class="position-absolute w-100 h-100" src="img/testimonial.jpg" style="object-fit: cover;">
-                </div>
-            </div>
-            <div class="col-lg-6 bg-dark p-5 overflow-hidden wow fadeIn" data-wow-delay="0.3s"
+            <div class="col-lg-12 bg-dark p-5 overflow-hidden wow fadeIn" data-wow-delay="0.3s"
                 style="border-bottom-right-radius: 50%;">
                 <div class="mb-5">
                     <h5 class="section-title">Depoimentos</h5>
@@ -548,9 +423,9 @@
 
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-secondary px-5">
+    <div id="contact" class="container-fluid bg-dark text-secondary px-5">
         <div class="row gx-5 wow fadeIn" data-wow-delay="0.1s">
-            <div class="col-lg-8 col-md-6">
+            <div class="col-lg-12 col-md-6">
                 <div class="row gx-5">
                     <div class="col-lg-4 col-md-12 pt-5 mb-5">
                         <h3 class="text-light mb-4">Fale Conosco</h3>
@@ -582,16 +457,16 @@
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2" href="#"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Início</a>
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-secondary mb-2" href="#about"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Sobre Nós</a>
+                            <a class="text-secondary mb-2" href="#mission"><i
+                                    class="bi bi-arrow-right text-primary me-2"></i>Nossa Missão</a>
+                            <a class="text-secondary mb-2" href="#team"><i
+                                    class="bi bi-arrow-right text-primary me-2"></i>Equipa</a>
                             <a class="text-secondary mb-2" href="#"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Nossas Casas</a>
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="bi bi-arrow-right text-primary me-2"></i>Equipe</a>
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="bi bi-arrow-right text-primary me-2"></i>Blog</a>
-                            <a class="text-secondary" href="#"><i
-                                    class="bi bi-arrow-right text-primary me-2"></i>Contato</a>
+                            <a class="text-secondary" href="#contact"><i
+                                    class="bi bi-arrow-right text-primary me-2"></i>Contacto</a>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
@@ -600,32 +475,17 @@
                             <a class="text-secondary mb-2" href="#"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Como Funciona</a>
                             <a class="text-secondary mb-2" href="#"><i
-                                    class="bi bi-arrow-right text-primary me-2"></i>Casas Sustentáveis</a>
+                                    class="bi bi-arrow-right text-primary me-2"></i>Intermediários</a>
                             <a class="text-secondary mb-2" href="#"><i
-                                    class="bi bi-arrow-right text-primary me-2"></i>Casas Veganas</a>
+                                    class="bi bi-arrow-right text-primary me-2"></i>Arrendadores</a>
                             <a class="text-secondary mb-2" href="#"><i
-                                    class="bi bi-arrow-right text-primary me-2"></i>Dicas para Locadores</a>
+                                    class="bi bi-arrow-right text-primary me-2"></i>Dicas</a>
                             <a class="text-secondary mb-2" href="#"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Blog</a>
                             <a class="text-secondary" href="#"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Ajuda</a>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 p-5"
-                    style="background: #111111;">
-                    <h3 class="text-white mb-4">Newsletter</h3>
-                    <h6 class="text-uppercase text-light mb-2">Assine nossa Newsletter</h6>
-                    <p class="small text-secondary">Receba dicas, novidades e promoções exclusivas para aluguel de
-                        casas sustentáveis e veganas.</p>
-                    <form action="">
-                        <div class="input-group">
-                            <input type="text" class="form-control border-white p-3" placeholder="Seu e-mail">
-                            <button class="btn btn-primary">Contacte-nos</button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

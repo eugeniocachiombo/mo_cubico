@@ -11,7 +11,7 @@
                 </div>
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Endereço de Email</label>
+                    <label for="floatingInput">Email ou Telefone</label>
                 </div>
                 <div class="form-floating mb-4">
                     <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
