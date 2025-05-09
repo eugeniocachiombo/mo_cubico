@@ -31,6 +31,7 @@
     <script src="{{ asset('assets/jquery/jMask.js') }}"></script>
     <script src="{{ asset('assets/js/alerta.js') }}"></script>
     <script src="{{ asset('assets/js/executar_alert.js') }}"></script>
+    <script src="{{ asset('assets/js/atrazar_redirect.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('assets/css/jquery.dataTables.min.css') }}">
     <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>

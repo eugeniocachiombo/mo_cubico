@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->enum('gender', ['MASCULINO', 'FEMININO']);
+            $table->enum('gender', ['Masculino', 'Feminino']);
             $table->date('birth_date');
             $table->string('nif')->nullable();
             $table->unsignedBigInteger('address_id')->nullable();
