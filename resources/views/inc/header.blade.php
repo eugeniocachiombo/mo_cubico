@@ -18,7 +18,8 @@
             <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                 <a href="#" class="dropdown-item">
                     <div class="d-flex align-items-center">
-                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <img class="rounded-circle" src="img/user.jpg" alt=""
+                            style="width: 40px; height: 40px;">
                         <div class="ms-2">
                             <h6 class="fw-normal mb-0">Jhon enviou uma mensagem</h6>
                             <small>15 minutos atrás</small>
@@ -28,7 +29,8 @@
                 <hr class="dropdown-divider">
                 <a href="#" class="dropdown-item">
                     <div class="d-flex align-items-center">
-                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <img class="rounded-circle" src="img/user.jpg" alt=""
+                            style="width: 40px; height: 40px;">
                         <div class="ms-2">
                             <h6 class="fw-normal mb-0">Jhon enviou uma mensagem</h6>
                             <small>15 minutos atrás</small>
@@ -38,7 +40,8 @@
                 <hr class="dropdown-divider">
                 <a href="#" class="dropdown-item">
                     <div class="d-flex align-items-center">
-                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <img class="rounded-circle" src="img/user.jpg" alt=""
+                            style="width: 40px; height: 40px;">
                         <div class="ms-2">
                             <h6 class="fw-normal mb-0">Jhon enviou uma mensagem</h6>
                             <small>15 minutos atrás</small>
@@ -74,14 +77,28 @@
             </div>
         </div>
         <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                <span class="d-none d-lg-inline-flex">John Doe</span>
+            <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
+                @if (auth()->user()->foto)
+                    <a href="{{ asset('storage/' . auth()->user()->foto) }}">
+                        <img class="rounded-circle" src="{{ asset('storage/' . auth()->user()->foto) }}"
+                            alt="Foto de perfil" style="width: 40px; height: 40px;">
+                    </a>
+                    <span class="d-none px-2 d-lg-inline-flex">{{ ucwords(auth()->user()->first_name) }}
+                        {{ ucwords(auth()->user()->last_name) }}</span>
+                @else
+                    <div class="d-flex justify-content-center align-items-center rounded-circle bg-secondary"
+                        style="width: 40px; height: 40px;">
+                        <i class="fa fa-images text-white"></i>
+                    </div>
+                    <span class="d-none px-2 d-lg-inline-flex">{{ ucwords(auth()->user()->first_name) }}
+                        {{ ucwords(auth()->user()->last_name) }}</span>
+                @endif
+                
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                 <a href="#" class="dropdown-item">Meu Perfil</a>
                 <a href="#" class="dropdown-item">Configurações</a>
-                <a href="#" class="dropdown-item">Sair</a>
+                <a href="{{ route('pages.logout') }}" class="dropdown-item">Sair</a>
             </div>
         </div>
     </div>

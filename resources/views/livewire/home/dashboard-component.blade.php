@@ -96,7 +96,7 @@
                             <td><input class="form-check-input" type="checkbox"></td>
                             <td>01 Jan 2045</td>
                             <td>INV-0123</td>
-                            <td>Jhon Doe</td>
+                            <td>{{auth()->user()->first_name}} {{auth()->user()->last_name}}</td>
                             <td>$123</td>
                             <td>Pago</td>
                             <td><a class="btn btn-sm btn-primary" href="">Detalhe</a></td>
@@ -105,7 +105,7 @@
                             <td><input class="form-check-input" type="checkbox"></td>
                             <td>01 Jan 2045</td>
                             <td>INV-0123</td>
-                            <td>Jhon Doe</td>
+                            <td>{{auth()->user()->first_name}} {{auth()->user()->last_name}}</td>
                             <td>$123</td>
                             <td>Pago</td>
                             <td><a class="btn btn-sm btn-primary" href="">Detalhe</a></td>
@@ -114,7 +114,7 @@
                             <td><input class="form-check-input" type="checkbox"></td>
                             <td>01 Jan 2045</td>
                             <td>INV-0123</td>
-                            <td>Jhon Doe</td>
+                            <td>{{auth()->user()->first_name}} {{auth()->user()->last_name}}</td>
                             <td>$123</td>
                             <td>Pago</td>
                             <td><a class="btn btn-sm btn-primary" href="">Detalhe</a></td>
@@ -123,7 +123,7 @@
                             <td><input class="form-check-input" type="checkbox"></td>
                             <td>01 Jan 2045</td>
                             <td>INV-0123</td>
-                            <td>Jhon Doe</td>
+                            <td>{{auth()->user()->first_name}} {{auth()->user()->last_name}}</td>
                             <td>$123</td>
                             <td>Pago</td>
                             <td><a class="btn btn-sm btn-primary" href="">Detalhe</a></td>
@@ -132,7 +132,7 @@
                             <td><input class="form-check-input" type="checkbox"></td>
                             <td>01 Jan 2045</td>
                             <td>INV-0123</td>
-                            <td>Jhon Doe</td>
+                            <td>{{auth()->user()->first_name}} {{auth()->user()->last_name}}</td>
                             <td>$123</td>
                             <td>Pago</td>
                             <td><a class="btn btn-sm btn-primary" href="">Detalhe</a></td>
@@ -157,7 +157,7 @@
                         <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                         <div class="w-100 ms-3">
                             <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-0">Jhon Doe</h6>
+                                <h6 class="mb-0">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</h6>
                                 <small>15 minutos atrás</small>
                             </div>
                             <span>Mensagem curta aqui...</span>
@@ -167,7 +167,7 @@
                         <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                         <div class="w-100 ms-3">
                             <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-0">Jhon Doe</h6>
+                                <h6 class="mb-0">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</h6>
                                 <small>15 minutos atrás</small>
                             </div>
                             <span>Mensagem curta aqui...</span>
@@ -177,7 +177,7 @@
                         <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                         <div class="w-100 ms-3">
                             <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-0">Jhon Doe</h6>
+                                <h6 class="mb-0">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</h6>
                                 <small>15 minutos atrás</small>
                             </div>
                             <span>Mensagem curta aqui...</span>
@@ -187,7 +187,7 @@
                         <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                         <div class="w-100 ms-3">
                             <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-0">Jhon Doe</h6>
+                                <h6 class="mb-0">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</h6>
                                 <small>15 minutos atrás</small>
                             </div>
                             <span>Mensagem curta aqui...</span>

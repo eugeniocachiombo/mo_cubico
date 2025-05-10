@@ -22,7 +22,7 @@ class SignupComponent extends Component
         'password' => "required",
         "gender" => "required",
         "birth_date" => "required",
-        "phone" => "required|unique:users,phone",
+        "phone" => "required|max:9|unique:users,phone",
         "password" => "required",
         'confirmpassword' => "required",
     ];
@@ -41,6 +41,7 @@ class SignupComponent extends Component
         "birth_date.required" => "Obrigatório",
         "phone.required" => "Obrigatório",
         'phone.unique' => "Este telefone já existe",
+        'phone.max' => "Deve conter 9 dígitos",
         "password.required" => "Obrigatório",
         'confirmpassword.required' => "Obrigatório",
     ];

@@ -45,7 +45,7 @@
                             <a class="btn btn-outline-secondary ms-2 py-2" href="{{ route('pages.login') }}">
                                 <i class="fas fa-user pe-1"></i> <span class="text-light">Entrar</span>
                             </a>
-                            <a class="btn btn-outline-secondary ms-2 py-2" href="">
+                            <a class="btn btn-outline-secondary ms-2 py-2" href="{{route('pages.signup')}}">
                                 <i class="fas fa-user pe-1"></i> <span class="text-light">Criar Conta</span>
                             </a>
                         </div>
