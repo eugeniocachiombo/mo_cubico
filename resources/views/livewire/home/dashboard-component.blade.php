@@ -8,36 +8,36 @@
         <div class="row g-4">
             <div class="col-sm-6 col-xl-3">
                 <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-chart-line fa-3x text-primary"></i>
+                    <i class="fa fa-check fa-3x text-primary"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Casas Arrendadas</p>
+                        <p class="mb-2">Validados</p>
                         <h6 class="mb-0">$1234</h6>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 col-xl-3">
                 <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                    <i class="fa fa-clock fa-3x text-primary"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Casas Pendentes</p>
+                        <p class="mb-2">Pendentes</p>
                         <h6 class="mb-0">$1234</h6>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 col-xl-3">
                 <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-chart-area fa-3x text-primary"></i>
+                    <i class="fa fa-users fa-3x text-primary"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Total de Clientes</p>
+                        <p class="mb-2">Inquilinos</p>
                         <h6 class="mb-0">$1234</h6>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 col-xl-3">
                 <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                    <i class="fa fa-hands fa-3x text-primary"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Total de Contratos</p>
+                        <p class="mb-2">Contratos</p>
                         <h6 class="mb-0">$1234</h6>
                     </div>
                 </div>
