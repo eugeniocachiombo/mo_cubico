@@ -27,37 +27,57 @@
                         <table class="table table-hover datatablePT py-4">
                             <thead>
                                 <tr class="bg-primary text-white">
-                                    <th scope="col">#</th>
-                                    <th scope="col">Título</th>
-                                    <th scope="col">Descrição</th>
-                                    <th scope="col">Preço</th>
-                                    <th scope="col">Proprietário</th>
+                                    <th class="text-center" scope="col">#</th>
+                                    <th class="text-center" scope="col">Título</th>
+                                    <th class="text-center" scope="col">Descrição</th>
+                                    <th class="text-center" scope="col">Proprietário</th>
                                     @if (auth()->user()->access_id == 1)
-                                        <th scope="col">Responsável</th>
+                                        <th class="text-center" scope="col">Responsável</th>
                                     @endif
-                                    <th scope="col">Status</th>
+                                    <th class="text-center" scope="col">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($homes as $index => $home)
-                                    <tr class="text-dark">
-                                        <th>{{ $home->id }}</th>
-                                        <td>{{ $home->title }}</td>
-                                        <td>{{ $home->description }}</td>
-                                        <td>{{ $home->price }}</td>
-                                        <td>{{ $home->getOwner->first_name }} {{ $home->getOwner->last_name }}</td>
-                                        @if (auth()->user()->access_id == 1)
-                                            <td>{{ $home->getResponsible->first_name }} {{ $home->getResponsible->last_name }}</td>
-                                        @endif
-                                        <td>{{ ucfirst($home->status) }}</td>
-                                    </tr>
-                                @endforeach
 
-                                @if ($homes->isEmpty())
+                                @forelse ($homes as $home)
+                                    <tr class="text-dark">
+                                        <th class="text-center">{{ $home->id }}</th>
+                                        <td class="text-center ">
+                                            <div class="d-flex justify-content-center ">
+                                                @if ($home->foto)
+                                                    <a href="{{ asset('storage/' . $home->foto) }}">
+                                                        <img class="rounded-circle"
+                                                            src="{{ asset('storage/' . $home->foto) }}"
+                                                            alt="Foto de perfil" style="width: 40px; height: 40px;">
+                                                    </a>
+                                                @else
+                                                    <div class="d-flex justify-content-center align-items-center rounded-circle bg-secondary"
+                                                        style="width: 40px; height: 40px;">
+                                                        <i class="fa fa-images text-white"></i>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <div>
+                                                {{ $home->title }} <br>
+                                                <span class=" bg-dark text-white px-3"
+                                                    style="font-size: 12px"><b>{{ number_format($home->price, 2, ',', '.') }}
+                                                        Kz</b></span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">{{ $home->description }}</td>
+                                        <td class="text-center">{{ $home->getOwner->first_name }}
+                                            {{ $home->getOwner->last_name }}</td>
+                                        @if (auth()->user()->access_id == 1)
+                                            <td class="text-center">{{ $home->getResponsible->first_name }}
+                                                {{ $home->getResponsible->last_name }}</td>
+                                        @endif
+                                        <td class="text-center">{{ ucfirst($home->status) }}</td>
+                                    </tr>
+                                @empty
                                     <tr>
                                         <td colspan="6" class="text-center">Nenhum imóvel encontrado.</td>
                                     </tr>
-                                @endif
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

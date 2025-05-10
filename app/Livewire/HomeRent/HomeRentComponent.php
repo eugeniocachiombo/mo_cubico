@@ -85,7 +85,7 @@ class HomeRentComponent extends Component
         if(Auth::user()->access_id == 1){
             return Home::all();
         }else{
-            return Home::where("responsible", Auth::user()->id);
+            return Home::where("responsible", Auth::user()->id)->get();
         }
     }
 
@@ -101,6 +101,8 @@ class HomeRentComponent extends Component
             if ($this->photo) {
                 $photoPath = $this->photo->store('imoveis-photos', 'public');
             }
+
+          //  dd($this->photo);
 
             Home::create([
                 'title' => $this->title,
@@ -122,7 +124,7 @@ class HomeRentComponent extends Component
                 'title' => 'Sucesso',
                 'html' => 'Operação realizada com sucesso',
             ]);
-            $this->clear();
+            $this->clearFilds();
             $this->dispatch('closemodal');
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -151,17 +153,17 @@ class HomeRentComponent extends Component
         }
     }
 
-    public function clear()
+    public function clearFilds()
     {
-        $this->title = '';
-        $this->description = '';
-        $this->price = '';
-        $this->photo = '';
-        $this->owner = '';
-        $this->address_id = '';
-        $this->province_id = '';
-        $this->municipality_id = '';
-        $this->address_id = '';
+        $this->title = null;
+        $this->description = null;
+        $this->price = null;
+        $this->photo = null;
+        $this->owner = null;
+        $this->address_id = null;
+        $this->province_id = null;
+        $this->municipality_id = null;
+        $this->address_id = null;
     }
 
 }

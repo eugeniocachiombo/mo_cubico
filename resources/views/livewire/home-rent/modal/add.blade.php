@@ -95,18 +95,19 @@
                         </div>
 
                         <!-- Campo de Foto -->
-                        <div class="col-12 mb-3" x-data="{ photoName: null, photoPreview: null }">
+                        <div class="col-12 mb-3" {{-- x-data="{ photoName: null, photoPreview: null }" --}}>
                             <label for="photo" class="form-label">Foto</label>
-                            <input type="file" id="photo" class="form-control mb-4" x-ref="photoInput"
+                            <input type="file" id="photo" wire:model="photo">
+                           {{-- <input type="file" id="photo" wire:model="photo" class="form-control mb-4" x-ref="photoInput"
                                 @change="
                                     photoName = $event.target.files[0].name;
                                     const reader = new FileReader();
                                     reader.onload = (e) => {
                                         photoPreview = e.target.result;
                                     };
-                                    reader.readAsDataURL($event.target.files[0]);
-                                " wire:model="photo">
-
+                                    reader.readAsDataURL($event.target.files[0]);"> --}}
+                                  
+                                    {{--
                             <center>
                                 <template x-if="photoPreview">
                                     <div class="mb-2">
@@ -121,7 +122,7 @@
                                         </button>
                                     </div>
                                 </template>
-                            </center>
+                            </center> --}}
 
                             @error('photo')
                                 <span class="text-danger">{{ $message }}</span>
