@@ -29,4 +29,13 @@ class Home extends Model
     public function getResponsible(){
         return $this->belongsTo(User::class, "responsible", "id");
     }
+    public function getProvince(){
+        return $this->belongsTo(Province::class, "province_id", "id");
+    }
+    public function getMunicipality(){
+        return $this->belongsTo(Municipality::class, "municipality_id", "id");
+    }
+    public function getAddress(){
+        return $this->belongsTo(Address::class, "address_id", "id");
+    }
 }

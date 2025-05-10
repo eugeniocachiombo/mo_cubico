@@ -6,14 +6,16 @@
     <div class="container-fluid pt-4 px-4">
         <div class="row bg-secondary rounded align-items-center justify-content-center mx-0" style="min-height: 65vh">
             <div class="row pt-4 pb-2">
-                <div class="col-6">
-                    <h4>Registrar Imóvel</h4>
-                </div>
-                <div class="col-6 d-flex justify-content-end ">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
-                        <i class="fas fa-plus-circle"></i> Registrar
-                    </button>
-                </div>
+                @if (!Gate::allows('inquilino'))
+                    <div class="col-6">
+                        <h4>Registrar Imóvel</h4>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end ">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
+                            <i class="fas fa-plus-circle"></i> Registrar
+                        </button>
+                    </div>
+                @endif
             </div>
 
             <div class="row">
@@ -31,10 +33,10 @@
                                     <th class="text-center" scope="col">Título</th>
                                     <th class="text-center" scope="col">Descrição</th>
                                     <th class="text-center" scope="col">Proprietário</th>
-                                    @if (auth()->user()->access_id == 1)
+                                    @can('admin')
                                         <th class="text-center" scope="col">Responsável</th>
-                                    @endif
-                                    <th class="text-center" scope="col">Status</th>
+                                    @endcan
+                                    <th class="text-center" scope="col">Estado</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,10 +46,10 @@
                                         <th class="text-center">{{ $home->id }}</th>
                                         <td class="text-center ">
                                             <div class="d-flex justify-content-center ">
-                                                @if ($home->foto)
-                                                    <a href="{{ asset('storage/' . $home->foto) }}">
+                                                @if ($home->photo)
+                                                    <a href="{{ asset('storage/' . $home->photo) }}">
                                                         <img class="rounded-circle"
-                                                            src="{{ asset('storage/' . $home->foto) }}"
+                                                            src="{{ asset('storage/' . $home->photo) }}"
                                                             alt="Foto de perfil" style="width: 40px; height: 40px;">
                                                     </a>
                                                 @else
@@ -64,13 +66,23 @@
                                                         Kz</b></span>
                                             </div>
                                         </td>
-                                        <td class="text-center">{{ $home->description }}</td>
+                                        <td class="text-center">
+                                            {{ $home->description }} <br>
+                                            <span class=" bg-dark text-white px-3"
+                                                    style="font-size: 12px">
+                                                    <b>
+                                                        {{ $home->getAddress->description }},
+                                                        {{ $home->getMunicipality->description }},
+                                                        {{ $home->getProvince->description }}
+                                                    </b>
+                                            </span>
+                                        </td>
                                         <td class="text-center">{{ $home->getOwner->first_name }}
                                             {{ $home->getOwner->last_name }}</td>
-                                        @if (auth()->user()->access_id == 1)
+                                        @can('admin')
                                             <td class="text-center">{{ $home->getResponsible->first_name }}
                                                 {{ $home->getResponsible->last_name }}</td>
-                                        @endif
+                                        @endcan
                                         <td class="text-center">{{ ucfirst($home->status) }}</td>
                                     </tr>
                                 @empty

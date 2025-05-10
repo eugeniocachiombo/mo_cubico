@@ -10,6 +10,7 @@ use App\Models\Province;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -82,8 +83,8 @@ class HomeRentComponent extends Component
 
     public function getHomes()
     {
-        if(Auth::user()->access_id == 1){
-            return Home::all();
+        if(Gate::allows("admin") || Gate::allows("inquilino")){
+            return Home::paginate(10);
         }else{
             return Home::where("responsible", Auth::user()->id)->get();
         }
@@ -101,8 +102,6 @@ class HomeRentComponent extends Component
             if ($this->photo) {
                 $photoPath = $this->photo->store('imoveis-photos', 'public');
             }
-
-          //  dd($this->photo);
 
             Home::create([
                 'title' => $this->title,
