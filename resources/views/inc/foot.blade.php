@@ -11,38 +11,43 @@
 
 <!-- Template Javascript -->
 <script src="{{asset('assets/js/main.js')}}"></script>
+
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/datatablePT/dataTable.css') }}">
+<script src="{{ asset('assets/datatablePT/dataTable.js') }}"></script>
+
 <script>
     $(document).ready(function() {
-        var table = $('#minhaTabela').DataTable({
-            language: {
-                "sEmptyTable": "Nenhum dado disponível na tabela",
-                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ entradas",
-                "sInfoEmpty": "Mostrando 0 até 0 de 0 entradas",
-                "sInfoFiltered": "(filtrado de _MAX_ entradas totais)",
-                "sLengthMenu": "Mostrar _MENU_ entradas",
+        $('.datatablePT').DataTable({
+            "language": {
+                "sEmptyTable": "Nenhum registro encontrado",
+                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sInfoThousands": ".",
+                "sLengthMenu": "_MENU_ Resultados por página",
                 "sLoadingRecords": "Carregando...",
                 "sProcessing": "Processando...",
-                "sSearch": "Pesquisar:",
                 "sZeroRecords": "Nenhum registro encontrado",
+                "sSearch": "Pesquisar",
                 "oPaginate": {
-                    "sFirst": "Primeiro",
-                    "sLast": "Último",
                     "sNext": "Próximo",
-                    "sPrevious": "Anterior"
+                    "sPrevious": "Anterior",
+                    "sFirst": "Primeiro",
+                    "sLast": "Último"
                 },
                 "oAria": {
-                    "sSortAscending": ": ativar para classificar a coluna em ordem crescente",
-                    "sSortDescending": ": ativar para classificar a coluna em ordem decrescente"
+                    "sSortAscending": ": Ordenar colunas de forma ascendente",
+                    "sSortDescending": ": Ordenar colunas de forma descendente"
                 }
-            }
-        });
-
-        $('#adicionarLinha').on('click', function() {
-            var id = Math.floor(Math.random() * 100);
-            var nome = "Nome " + id;
-            var idade = Math.floor(Math.random() * 50) + 20;
-            table.row.add([id, nome, idade]).draw();
+            },
+            "order": [
+                [0, 'desc']
+            ]
         });
     });
 </script>
+<!-- Select 2-->
+<script src="{{ asset('assets/select2/select2.js') }}"></script>
 @livewireScripts
+@stack('scripts')

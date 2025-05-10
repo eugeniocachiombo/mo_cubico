@@ -114,10 +114,6 @@
                             Já tem uma conta? <a href="{{ route('pages.login') }}">Entrar</a>
                         </small>
                     </div>
-                    
-                    
-                    
-
                 </form>
             </div>
         </div>

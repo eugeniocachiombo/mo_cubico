@@ -10,13 +10,23 @@ class Home extends Model
     use HasFactory;
 
     protected $fillable = [
+        'title',
         'description',
         'price',
         'photo',
         'owner',
         'responsible',
-        'access_id',
+        'address_id',
+        'province_id',
+        'municipality_id',
         'address_id',
         'status'
     ];
+
+    public function getOwner(){
+        return $this->belongsTo(User::class, "owner", "id");
+    }
+    public function getResponsible(){
+        return $this->belongsTo(User::class, "responsible", "id");
+    }
 }

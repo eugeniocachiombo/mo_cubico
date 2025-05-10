@@ -29,9 +29,9 @@
             </div>
         </div>
         <div class="navbar-nav w-100">
-            <a href="/" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Painel</a>
-            <a href="widget.html" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Perfil</a>
-            <a href="{{route('home-rent')}}" class="nav-item nav-link"><i class="fa fa-home me-2"></i>Imóveis</a>
+            <a href="{{route('home.dashboard')}}" class="nav-item nav-link {{\Illuminate\Support\Facades\Route::currentRouteName() == 'home.dashboard' ? 'active' : ''}}"><i class="fa fa-tachometer-alt me-2"></i>Painel</a>
+            <a href="widget.html" class="nav-item nav-link "><i class="fa fa-user me-2"></i>Perfil</a>
+            <a href="{{route('home-rent')}}" class="nav-item nav-link {{\Illuminate\Support\Facades\Route::currentRouteName() == 'home-rent' ? 'active' : ''}}""><i class="fa fa-home me-2"></i>Imóveis</a>
             <a href="form.html" class="nav-item nav-link"><i class="fa fa-search me-2"></i>Localizar</a>
             <a href="table.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>Pedidos</a>
             <div class="nav-item dropdown">
