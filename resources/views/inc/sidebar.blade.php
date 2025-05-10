@@ -31,7 +31,7 @@
         <div class="navbar-nav w-100">
             <a href="/" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Painel</a>
             <a href="widget.html" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Perfil</a>
-            <a href="form.html" class="nav-item nav-link"><i class="fa fa-home me-2"></i>Imóveis</a>
+            <a href="{{route('home-rent')}}" class="nav-item nav-link"><i class="fa fa-home me-2"></i>Imóveis</a>
             <a href="form.html" class="nav-item nav-link"><i class="fa fa-search me-2"></i>Localizar</a>
             <a href="table.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>Pedidos</a>
             <div class="nav-item dropdown">
@@ -53,7 +53,7 @@
             </div>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                        class="fa fa-users me-2"></i>Entidades</a>
+                        class="fa fa-users me-2"></i>Utilizadores</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="signin.html" class="dropdown-item">Admin</a>
                     <a href="signup.html" class="dropdown-item">Inquilinos</a>
