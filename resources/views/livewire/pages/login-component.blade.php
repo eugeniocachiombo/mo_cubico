@@ -36,7 +36,7 @@
                     wire:target="authenticate">
                     <span wire:loading.remove wire:target="authenticate">Entrar</span>
                     <span wire:loading wire:target="authenticate">
-                        <i class="fa fa-spinner fa-spin"></i> A processar...
+                        <i class="fa fa-spinner fa-spin"></i> 
                     </span></button>
                 <p class="text-center mb-0">Não tem uma conta? <a href="{{route('pages.signup')}}">Cadastre-se</a></p>
             </div>

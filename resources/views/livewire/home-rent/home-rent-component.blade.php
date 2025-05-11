@@ -114,12 +114,8 @@
                                                 @can('admin')
                                                     <button type="button"
                                                         wire:click.prevent='validateHome({{ $home->id }})'
-                                                        wire:loading.attr="disabled" wire:target="validateHome"
                                                         class="btn mt-2 btn-sm btn-success text-white">
-                                                        <span wire:loading.remove wire:target="validateHome">Validar</span>
-                                                        <span wire:loading wire:target="validateHome">
-                                                            <i class="fa fa-spinner fa-spin"></i> A processar...
-                                                        </span>
+                                                        Validar
                                                     </button>
                                                 @endcan
                                             @else

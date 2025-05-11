@@ -19,7 +19,7 @@ class DashboardComponent extends Component
             "custumers" => User::where("access_id", 4)->get(),
             "intermediates" => User::where("access_id", 2)->get(),
             "owners" => User::where("access_id", 3)->get(),
-            'homes' => Home::where("status", "pendente")
+            'homes' => Home::where("status", "validado")
             ->orderBy('id', 'desc')
             ->get(),
         ])

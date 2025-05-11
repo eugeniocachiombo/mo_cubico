@@ -1,4 +1,4 @@
-<div wire:ignore class="modal fade" id="add" tabindex="-1" aria-labelledby="itemModalLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="add" tabindex="-1" aria-labelledby="itemModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content bg-secondary rounded p-4 p-sm-5">
 
@@ -154,7 +154,7 @@
                                 wire:target="save" class="btn btn-primary px-4 py-2">
                                 <span wire:loading.remove wire:target="save">Registrar</span>
                                 <span wire:loading wire:target="save">
-                                    <i class="fa fa-spinner fa-spin"></i> A processar...
+                                    <i class="fa fa-spinner fa-spin"></i> 
                                 </span>
                             </button>
                         </div>

@@ -108,10 +108,18 @@ class HomeRentComponent extends Component
 
     public function validateHome($home_id)
     {
-        dd($home_id);
         $home = Home::find($home_id);
         $home->status = "validado";
         $home->save();
+        $this->dispatch('alerta', [
+            'icon' => 'success',
+            'title' => 'Sucesso',
+            'html' => 'Operação realizada com sucesso',
+        ]);
+        $this->dispatch('atrazar_redirect', [
+            'path' => '/imovéis/registros', 
+            'time' => 2000
+        ]);
     }
 
     public function save()

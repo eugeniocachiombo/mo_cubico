@@ -106,7 +106,7 @@
                             class="btn btn-primary px-4 py-2">
                             <span wire:loading.remove wire:target="save">Cadastrar</span>
                             <span wire:loading wire:target="save">
-                                <i class="fa fa-spinner fa-spin"></i> A processar...
+                                <i class="fa fa-spinner fa-spin"></i> 
                             </span>
                         </button>
                     

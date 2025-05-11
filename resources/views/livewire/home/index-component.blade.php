@@ -140,7 +140,7 @@
                 <h1 class="display-4 text-secondary mb-4">
                     <span class="text-primary">30% de Desconto</span><br> nas Taxas de Cadastro Este Mês
                 </h1>
-                <a href="" class="btn btn-primary py-3 px-5">Cadastre seu Imóvel</a>
+                <a href="{{route('pages.login')}}" class="btn btn-primary py-3 px-5">Cadastre seu Imóvel</a>
             </div>
         </div>
     </div>
