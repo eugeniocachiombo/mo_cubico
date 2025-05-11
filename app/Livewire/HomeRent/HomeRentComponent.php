@@ -31,6 +31,7 @@ class HomeRentComponent extends Component
     public $address_id;
     public $photoUrl;
     public $addressDesc;
+    public $municipaltyDesc;
     public $municipalities = [];
     public $addresses = [];
 
@@ -76,7 +77,7 @@ class HomeRentComponent extends Component
         return view('livewire.home-rent.home-rent-component', [
             'users' => User::where("access_id", "!=", 1)->where("access_id", "!=", 4)->get(),
             'accesses' => Access::all(),
-            'provinces' => Province::all(),
+            'provinces' => Province::orderBy("description", "asc")->get(),
             'homes' => $this->getHomes(),
         ])
             ->layout("components.layouts.app");
@@ -94,12 +95,14 @@ class HomeRentComponent extends Component
     public function getLocal()
     {
         if ($this->province_id) {
-            $this->municipalities = Municipality::where("province_id", $this->province_id)->get();
+            $this->municipalities = Municipality::where("province_id", $this->province_id)
+            ->orderBy("description", "asc")->get();
         }
 
         if ($this->municipality_id && $this->province_id) {
             $this->addresses = Address::where("municipality_id", $this->municipality_id)
-                ->where("province_id", $this->province_id)->get();
+                ->where("province_id", $this->province_id)
+                ->orderBy("description", "asc")->get();
         }
     }
 
@@ -194,13 +197,35 @@ class HomeRentComponent extends Component
         ]);
 
         $this->addresses = Address::where("municipality_id", $this->municipality_id)
-        ->where("province_id", $this->province_id)->get();
+        ->where("province_id", $this->province_id)
+        ->orderBy("description", "asc")->get();
         $this->address_id = $address->id;
         $this->addressDesc = null;
         $this->dispatch('closemodalAddresses');
     }
-        
-        
+
+    public function createMunicipality()
+    {
+        $this->validate([
+            'municipaltyDesc' => 'required|string|max:255',
+            'province_id' => 'required|exists:provinces,id',
+        ], [
+            'province_id.required' => 'O campo província é obrigatório.',
+            'province_id.exists' => 'A província selecionada não é válida.',
+            'municipaltyDesc.required' => 'O campo é obrigatório.',
+        ]);
+
+        $municipality = Municipality::create([
+            'description' => $this->municipaltyDesc,
+            "province_id" => $this->province_id,
+        ]);
+
+        $this->municipalities = Municipality::where("province_id", $this->province_id)
+        ->orderBy("description", "asc")->get();
+        $this->municipality_id = $municipality->id;
+        $this->municipaltyDesc = null;
+        $this->dispatch('closemodalMunicipality');
+    }
 
     public function clearFilds()
     {
