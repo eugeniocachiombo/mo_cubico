@@ -26,6 +26,8 @@ class User extends Authenticatable
         "birth_date",
         "nif",
         "address_id",
+        "province_id",
+        "municipality_id",
         "phone",
         "photo",
         "password",
@@ -52,7 +54,10 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function getAcess(){
+    public function getAccess(){
         return $this->belongsTo(Access::class, "access_id", "id");
+    }
+    public function getAddress(){
+        return $this->belongsTo(Address::class, "address_id", "id");
     }
 }
