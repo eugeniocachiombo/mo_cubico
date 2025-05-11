@@ -13,26 +13,35 @@
                         <!-- profile image -->
                         <div class="col-lg-12">
                             <div class="full dis_flex center_text">
-                                
+
                                 <div class="profile_contant mb-4">
                                     <div class="contact_inner ">
-                                        <div class="d-flex">
-                                            @if (auth()->user()->foto)
-                                                <a href="{{ asset('storage/' . auth()->user()->foto) }}">
-                                                    <img class="rounded-circle"
-                                                        src="{{ asset('storage/' . auth()->user()->foto) }}"
-                                                        alt="Foto de perfil" style="width: 40px; height: 40px;">
-                                                </a>
-                                            @else
-                                                <div class="border d-flex justify-content-center align-items-center rounded-circle bg-secondary"
+                                        <div class="d-flex align-items-center">
+                                            <div class="position-relative" style="width: 40px; height: 40px;">
+                                                @if (auth()->user()->photo)
+                                                <a href="{{ asset('storage/' . auth()->user()->photo) }}">
+                                                    <img class=" rounded-circle" src="{{ asset('storage/' . auth()->user()->photo) }}" alt="photo de perfil"
                                                     style="width: 40px; height: 40px;">
-                                                    <i class="fa fa-images text-white"></i>
+                                                </a>
+                                                @else
+                                                    <div class="border d-flex justify-content-center align-items-center rounded-circle bg-secondary"
+                                                        style="width: 40px; height: 40px;">
+                                                        <i class="fa fa-images text-white"></i>
+                                                    </div>
+                                                @endif
+                                        
+                                                {{-- Livewire sobreposto e um pouco mais baixo --}}
+                                                <div class="position-absolute" style="bottom: -10px; right: -6px;">
+                                                    @livewire('user.component.set-photo')
                                                 </div>
-                                            @endif
-                                            <h3 class="mx-2">{{ ucwords($user->first_name) }}
-                                                {{ ucwords($user->last_name) }}</h3>
                                             </div>
-                                        </div>   
+                                        
+                                            <h3 class="mx-2 mb-0">{{ ucwords(auth()->user()->first_name) }} {{ ucwords(auth()->user()->last_name) }}</h3>
+                                        </div>
+                                        
+                                        
+                                        
+                                    </div>
 
                                 </div>
                             </div>
@@ -291,14 +300,14 @@
 @push('scripts')
     <script>
         /*   $(document).ready(function() {
-                                $('#province_id').select2({
-                                    theme: 'bootstrap-5',
-                                    width: "100%"
-                                });
-                                $('#province_id').on('change', function(e) {
-                                    @this.set('province_id', $('#province_id').select2("val"));
-                                    @this.get_local();
-                                });
-                            });*/
+                                    $('#province_id').select2({
+                                        theme: 'bootstrap-5',
+                                        width: "100%"
+                                    });
+                                    $('#province_id').on('change', function(e) {
+                                        @this.set('province_id', $('#province_id').select2("val"));
+                                        @this.get_local();
+                                    });
+                                });*/
     </script>
 @endpush

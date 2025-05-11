@@ -1,7 +1,8 @@
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
     <a href="/" class="navbar-brand d-flex d-lg-none me-4">
-        <h2 class="text-primary mb-0"><img style="width: 40px" src="{{asset('assets/images/logo/redlogo.png')}}" alt=""></h2>
+        <h2 class="text-primary mb-0"><img style="width: 40px" src="{{ asset('assets/images/logo/redlogo.png') }}"
+                alt=""></h2>
     </a>
     <a href="#" class="sidebar-toggler flex-shrink-0">
         <i class="fa fa-bars"></i>
@@ -78,11 +79,9 @@
         </div>
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
-                @if (auth()->user()->foto)
-                    <a href="{{ asset('storage/' . auth()->user()->foto) }}">
-                        <img class="rounded-circle" src="{{ asset('storage/' . auth()->user()->foto) }}"
-                            alt="Foto de perfil" style="width: 40px; height: 40px;">
-                    </a>
+                @if (auth()->user()->photo)
+                    <img class="img-fluid rounded-circle" src="{{ asset('storage/' . auth()->user()->photo) }}"
+                        alt="photo de perfil" style="width: 40px; height: 40px;">
                     <span class="d-none px-2 d-lg-inline-flex">{{ ucwords(auth()->user()->first_name) }}
                         {{ ucwords(auth()->user()->last_name) }}</span>
                 @else
@@ -93,10 +92,10 @@
                     <span class="d-none px-2 d-lg-inline-flex">{{ ucwords(auth()->user()->first_name) }}
                         {{ ucwords(auth()->user()->last_name) }}</span>
                 @endif
-                
+
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                <a href="{{route('user.profile')}}" class="dropdown-item">Meu Perfil</a>
+                <a href="{{ route('user.profile') }}" class="dropdown-item">Meu Perfil</a>
                 <a href="#" class="dropdown-item">Configurações</a>
                 <a href="{{ route('pages.logout') }}" class="dropdown-item">Sair</a>
             </div>

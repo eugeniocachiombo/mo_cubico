@@ -6,13 +6,13 @@
         </a>
         <div class="d-flex align-items-center ms-4 mb-4">
             <div class="position-relative">
-                @if (auth()->user()->foto)
-                    <a href="{{ asset('storage/' . auth()->user()->foto) }}">
-                        <img class="rounded-circle" src="{{ asset('storage/' . auth()->user()->foto) }}" alt="Foto de perfil"
+                @if (auth()->user()->photo)
+                    <a href="{{ asset('storage/' . auth()->user()->photo) }}">
+                        <img class=" rounded-circle" src="{{ asset('storage/' . auth()->user()->photo) }}" alt="photo de perfil"
                         style="width: 40px; height: 40px;">
                     </a>
                 @else
-                    <div class="d-flex justify-content-center align-items-center rounded-circle bg-secondary"
+                    <div class="border d-flex justify-content-center align-items-center rounded-circle bg-secondary"
                         style="width: 40px; height: 40px;">
                         <i class="fa fa-images text-white"></i>
                     </div>
