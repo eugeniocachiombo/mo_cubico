@@ -8,7 +8,7 @@
             <div class="row pt-4 pb-2">
                 @if (!Gate::allows('inquilino'))
                     <div class="col-6">
-                        <h4>Registrar Imóvel</h4>
+                        <h4>Lista de Imóveis</h4>
                     </div>
                     <div class="col-6 d-flex justify-content-end ">
                         <button type="button" wire:click.prevent='clearFilds' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
@@ -24,9 +24,9 @@
 
             <div class="col-12">
                 <div class="bg-secondary">
-                    <h6 class="mb-4">Lista de Imóveis em Renda</h6>
+                    <h6 class="mb-4"></h6>
                     <div class="table-responsive">
-                        <table class="table table-hover datatablePT py-4">
+                        <table wire:ignore class="table table-hover datatablePT py-4">
                             <thead>
                                 <tr class="bg-primary text-white">
                                     <th class="text-center" scope="col">#</th>

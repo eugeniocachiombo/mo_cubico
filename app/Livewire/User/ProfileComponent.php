@@ -103,7 +103,6 @@ class ProfileComponent extends Component
     }
 
     public function check_password(){
-        
         $isTrue = Hash::check($this->oldpassword, $this->user->password);
         
         if (!$isTrue) {
@@ -140,7 +139,7 @@ class ProfileComponent extends Component
         try {
             DB::beginTransaction();
             User::where("id", Auth::user()->id)->update([
-                "password" => $this->newpassword
+                "password" => Hash::make($this->newpassword)
             ]);
             $this->dispatch('alerta', [
                 'icon' => 'success',
