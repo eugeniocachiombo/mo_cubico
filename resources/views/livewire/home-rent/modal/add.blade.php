@@ -1,6 +1,6 @@
-<div wire:ignore.self class="modal fade" id="add" tabindex="-1" aria-labelledby="itemModalLabel" aria-hidden="true">
+<div wire:ignore class="modal fade" id="add" tabindex="-1" aria-labelledby="itemModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content bg-secondary rounded p-4 p-sm-5" >
+        <div class="modal-content bg-secondary rounded p-4 p-sm-5">
 
             <div class="modal-header d-flex align-items-center justify-content-between border-0">
                 <h3 class="text-primary m-0">Registrar</h3>
@@ -14,7 +14,8 @@
                         <!-- Título -->
                         <div class="col-md-6 mb-3">
                             <label for="title" class="form-label">Título</label>
-                            <input type="text" wire:model="title" id="title" class="form-control" placeholder="Título">
+                            <input type="text" wire:model="title" id="title" class="form-control"
+                                placeholder="Título">
                             @error('title')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -32,10 +33,16 @@
                         <!-- Preço -->
                         <div class="col-md-6 mb-3">
                             <label for="price" class="form-label">Preço</label>
-                            <input type="number" wire:model="price" id="price" class="form-control" placeholder="Preço" step="0.01">
+                            <input type="text" wire:model="price" id="price" class="form-control"
+                                placeholder="Preço" step="0.01">
                             @error('price')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
+                            <script>
+                                $("#price").mask('000.000.000.000.000,00', {
+                                    reverse: true
+                                });
+                            </script>
                         </div>
 
                         <!-- Proprietário -->
@@ -44,7 +51,8 @@
                             <select wire:model="owner" id="owner" class="form-select">
                                 <option value="">Selecione</option>
                                 @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->first_name }} {{ $user->last_name }}</option>
+                                    <option value="{{ $user->id }}">{{ $user->first_name }} {{ $user->last_name }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('owner')
@@ -55,7 +63,8 @@
                         <!-- Província -->
                         <div class="col-md-6 mb-3">
                             <label for="province_id" class="form-label">Província</label>
-                            <select wire:model="province_id" id="province_id" class="form-select">
+                            <select wire:change='getLocal' wire:model="province_id" id="province_id"
+                                class="form-select">
                                 <option value="">Selecione</option>
                                 @foreach ($provinces as $province)
                                     <option value="{{ $province->id }}">{{ $province->description }}</option>
@@ -69,7 +78,8 @@
                         <!-- Município -->
                         <div class="col-md-6 mb-3">
                             <label for="municipality_id" class="form-label">Município</label>
-                            <select wire:model="municipality_id" id="municipality_id" class="form-select">
+                            <select wire:change='getLocal' wire:model="municipality_id" id="municipality_id"
+                                class="form-select">
                                 <option value="">Selecione</option>
                                 @foreach ($municipalities as $municipality)
                                     <option value="{{ $municipality->id }}">{{ $municipality->description }}</option>
@@ -92,47 +102,56 @@
                             @error('address_id')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
+
+                            <!-- Botão para abrir o modal de novo endereço -->
+                            <button type="button" class="btn btn-link p-0 mt-2" data-bs-toggle="modal"
+                                data-bs-target="#addAddressModal">
+                                + Cadastrar novo endereço
+                            </button>
+
+                            @include('livewire.home-rent.modal.address')
                         </div>
 
-                        <!-- Campo de Foto -->
-                        <div class="col-12 mb-3" {{-- x-data="{ photoName: null, photoPreview: null }" --}}>
+
+                        <!-- Campo de Foto com wire:loading -->
+                        <div class="col-12 mb-3">
                             <label for="photo" class="form-label">Foto</label>
-                            <input type="file" id="photo" wire:model="photo">
-                           {{-- <input type="file" id="photo" wire:model="photo" class="form-control mb-4" x-ref="photoInput"
-                                @change="
-                                    photoName = $event.target.files[0].name;
-                                    const reader = new FileReader();
-                                    reader.onload = (e) => {
-                                        photoPreview = e.target.result;
-                                    };
-                                    reader.readAsDataURL($event.target.files[0]);"> --}}
-                                  
-                                    {{--
+                            <input type="file" class="form-control" id="photo" wire:model="photo">
+
+                            <!-- Barra de progresso simples com wire:loading -->
+                            <div class="my-2 w-100" wire:loading wire:target="photo">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
+                                        role="progressbar" style="width: 100%">
+                                        Carregando...
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pré-visualização -->
                             <center>
-                                <template x-if="photoPreview">
-                                    <div class="mb-2">
-                                        <img :src="photoPreview" alt="Pré-visualização da Foto" class="img-fluid rounded" style="max-height: 100px;"> <br>
+                                @if ($photo)
+                                    <div class="my-3">
+                                        <img src="{{ $photo->temporaryUrl() }}" alt="Pré-visualização da Foto"
+                                            class="img-fluid rounded" style="max-height: 100px;"> <br>
                                         <button type="button" class="btn btn-sm btn-danger mt-2"
-                                            @click="
-                                                photoName = null;
-                                                photoPreview = null;
-                                                $refs.photoInput.value = null;
-                                            ">
+                                            wire:click="$set('photo', null)">
                                             Remover Foto
                                         </button>
                                     </div>
-                                </template>
-                            </center> --}}
+                                @endif
+                            </center>
 
                             @error('photo')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
+
                         <!-- Botões -->
                         <div class="col-12 text-end">
-                            <button type="button" wire:click.prevent='save' wire:loading.attr="disabled" wire:target="save"
-                                class="btn btn-primary px-4 py-2">
+                            <button type="button" wire:click.prevent='save' wire:loading.attr="disabled"
+                                wire:target="save" class="btn btn-primary px-4 py-2">
                                 <span wire:loading.remove wire:target="save">Registrar</span>
                                 <span wire:loading wire:target="save">
                                     <i class="fa fa-spinner fa-spin"></i> A processar...
@@ -146,12 +165,12 @@
     </div>
 </div>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-      Livewire.on('closemodal', () => {
-          document.getElementById('add').classList.remove('show');
-          document.getElementById('add').style.display = 'none';
-          document.body.classList.remove('modal-open');
-          document.querySelector('.modal-backdrop').remove();
-      });
-  });
+    document.addEventListener("DOMContentLoaded", () => {
+        Livewire.on('closemodal', () => {
+            document.getElementById('add').classList.remove('show');
+            document.getElementById('add').style.display = 'none';
+            document.body.classList.remove('modal-open');
+            document.querySelector('.modal-backdrop').remove();
+        });
+    });
 </script>

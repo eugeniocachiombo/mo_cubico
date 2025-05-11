@@ -30,11 +30,14 @@ class HomeRentComponent extends Component
     public $municipality_id;
     public $address_id;
     public $photoUrl;
+    public $addressDesc;
+    public $municipalities = [];
+    public $addresses = [];
 
     protected $rules = [
         'title' => 'required|string|max:255',
         'description' => 'required|string',
-        'price' => 'required|numeric|min:0',
+        'price' => 'required|min:0',
         'photo' => 'nullable|image',
         'owner' => 'required',
         'province_id' => 'required|exists:provinces,id',
@@ -51,7 +54,6 @@ class HomeRentComponent extends Component
         'description.string' => 'A descrição deve ser uma string.',
 
         'price.required' => 'O campo preço é obrigatório.',
-        'price.numeric' => 'O preço deve ser um número.',
         'price.min' => 'O preço não pode ser menor que 0.',
 
         'photo.image' => 'A foto deve ser uma imagem.',
@@ -70,12 +72,11 @@ class HomeRentComponent extends Component
 
     public function render()
     {
+        $this->getLocal();
         return view('livewire.home-rent.home-rent-component', [
             'users' => User::where("access_id", "!=", 1)->where("access_id", "!=", 4)->get(),
             'accesses' => Access::all(),
             'provinces' => Province::all(),
-            'municipalities' => Municipality::all(),
-            'addresses' => Address::all(),
             'homes' => $this->getHomes(),
         ])
             ->layout("components.layouts.app");
@@ -83,16 +84,35 @@ class HomeRentComponent extends Component
 
     public function getHomes()
     {
-        if(Gate::allows("admin") || Gate::allows("inquilino")){
-            return Home::paginate(10);
-        }else{
+        if (Gate::allows("admin") || Gate::allows("inquilino")) {
+            return Home::all();
+        } else {
             return Home::where("responsible", Auth::user()->id)->get();
         }
     }
 
+    public function getLocal()
+    {
+        if ($this->province_id) {
+            $this->municipalities = Municipality::where("province_id", $this->province_id)->get();
+        }
+
+        if ($this->municipality_id && $this->province_id) {
+            $this->addresses = Address::where("municipality_id", $this->municipality_id)
+                ->where("province_id", $this->province_id)->get();
+        }
+    }
+
+    public function validateHome($home_id)
+    {
+        dd($home_id);
+        $home = Home::find($home_id);
+        $home->status = "validado";
+        $home->save();
+    }
+
     public function save()
     {
-
         $this->validate();
         try {
 
@@ -103,10 +123,13 @@ class HomeRentComponent extends Component
                 $photoPath = $this->photo->store('imoveis-photos', 'public');
             }
 
+            $priceRmPoint = str_replace(".", "", $this->price);
+            $priceFinal = str_replace(",", ".", $priceRmPoint);
+
             Home::create([
                 'title' => $this->title,
                 'description' => $this->description,
-                'price' => $this->price,
+                'price' => $priceFinal,
                 'photo' => $photoPath,
                 'owner' => $this->owner,
                 'responsible' => Auth::user()->id,
@@ -119,15 +142,15 @@ class HomeRentComponent extends Component
             DB::commit();
             $this->dispatch('alerta', [
                 'icon' => 'success',
-                'btn' => true,
                 'title' => 'Sucesso',
                 'html' => 'Operação realizada com sucesso',
             ]);
             $this->clearFilds();
             $this->dispatch('closemodal');
+            $this->dispatch('atrazar_redirect', ['path' => '/imovéis/registros', 'time' => 2000]);
         } catch (\Throwable $th) {
             DB::rollBack();
-           // dd($th->getMessage(), $th->getLine());
+            // dd($th->getMessage(), $th->getLine());
             $this->dispatch('alerta', [
                 'icon' => 'error',
                 'btn' => true,
@@ -135,8 +158,6 @@ class HomeRentComponent extends Component
                 'html' => 'Erro ao realizar operação',
             ]);
         }
-
-        // Limpa os campos
     }
 
     public function removePhoto()
@@ -151,6 +172,35 @@ class HomeRentComponent extends Component
             $this->photoUrl = $this->photo->temporaryUrl();
         }
     }
+
+    public function createAddress()
+    {
+        $this->validate([
+            'addressDesc' => 'required|string|max:255',
+            'province_id' => 'required|exists:provinces,id',
+            'municipality_id' => 'required|exists:municipalities,id',
+        ], [
+            'province_id.required' => 'O campo província é obrigatório.',
+            'province_id.exists' => 'A província selecionada não é válida.',
+            'municipality_id.required' => 'O campo município é obrigatório.',
+            'municipality_id.exists' => 'O município selecionado não é válido.',
+            'addressDesc.required' => 'O campo endereço é obrigatório.',
+        ]);
+
+        $address = Address::create([
+            'description' => $this->addressDesc,
+            "province_id" => $this->province_id,
+            "municipality_id" => $this->municipality_id,
+        ]);
+
+        $this->addresses = Address::where("municipality_id", $this->municipality_id)
+        ->where("province_id", $this->province_id)->get();
+        $this->address_id = $address->id;
+        $this->addressDesc = null;
+        $this->dispatch('closemodalAddresses');
+    }
+        
+        
 
     public function clearFilds()
     {

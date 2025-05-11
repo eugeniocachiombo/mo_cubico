@@ -35,7 +35,7 @@ return new class extends Migration
             $table->unsignedBigInteger('address_id');
             $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
             
-            $table->enum('status', ['pendente', 'aprovado'])->default('pendente');
+            $table->enum('status', ['pendente', 'validado'])->default('pendente');
             $table->timestamps();
         });
     }

@@ -36,9 +36,5 @@
     <link rel="stylesheet" href="{{ asset('assets/css/jquery.dataTables.min.css') }}">
     <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/ellipsis.js') }}"></script>
-
-    <!-- Alpine.js -->
-    <script src="{{ asset('assets/js/alphine.js') }}" defer></script>
-
     @livewireStyles
 </head>

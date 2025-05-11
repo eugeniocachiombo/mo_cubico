@@ -61,29 +61,72 @@
                                             </div>
                                             <div>
                                                 {{ $home->title }} <br>
-                                                <span class=" bg-dark text-white px-3"
+                                                <span class="badge bg-dark text-white px-3"
                                                     style="font-size: 12px"><b>{{ number_format($home->price, 2, ',', '.') }}
                                                         Kz</b></span>
                                             </div>
                                         </td>
                                         <td class="text-center">
                                             {{ $home->description }} <br>
-                                            <span class=" bg-dark text-white px-3"
-                                                    style="font-size: 12px">
-                                                    <b>
-                                                        {{ $home->getAddress->description }},
-                                                        {{ $home->getMunicipality->description }},
-                                                        {{ $home->getProvince->description }}
-                                                    </b>
+                                            <span class="badge bg-dark text-white px-3" style="font-size: 12px">
+                                                <i class="fas fa-map"></i> <b>
+                                                    {{ $home->getAddress->description }},
+                                                    {{ $home->getMunicipality->description }},
+                                                    {{ $home->getProvince->description }}
+                                                </b>
                                             </span>
                                         </td>
-                                        <td class="text-center">{{ $home->getOwner->first_name }}
-                                            {{ $home->getOwner->last_name }}</td>
+                                        <td class="text-center">
+                                            <div class="d-flex justify-content-center ">
+                                                @if ($home->getOwner->photo)
+                                                    <a href="{{ asset('storage/' . $home->getOwner->photo) }}">
+                                                        <img class="rounded-circle"
+                                                            src="{{ asset('storage/' . $home->getOwner->photo) }}"
+                                                            alt="Foto de perfil" style="width: 40px; height: 40px;">
+                                                    </a>
+                                                @else
+                                                    <div class="d-flex justify-content-center align-items-center rounded-circle bg-secondary"
+                                                        style="width: 40px; height: 40px;">
+                                                        <i class="fa fa-images text-white"></i>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <div>
+                                                {{ $home->getOwner->first_name }}
+                                                {{ $home->getOwner->last_name }} <br>
+                                                <span class="badge bg-dark text-white px-3" style="font-size: 12px">
+                                                    <b>
+                                                        <i class="fas fa-phone-alt"></i> {{ $home->getOwner->phone }}
+                                                    </b>
+                                                </span>
+                                            </div>
+                                        </td>
                                         @can('admin')
                                             <td class="text-center">{{ $home->getResponsible->first_name }}
                                                 {{ $home->getResponsible->last_name }}</td>
                                         @endcan
-                                        <td class="text-center">{{ ucfirst($home->status) }}</td>
+                                        <td class="text-center">
+                                            @if ($home->status == 'pendente')
+                                                <span
+                                                    class="badge bg-primary text-white">{{ ucfirst($home->status) }}</span>
+                                                <br>
+                                               
+                                                @can('admin')
+                                                    <button type="button"
+                                                        wire:click.prevent='validateHome({{ $home->id }})'
+                                                        wire:loading.attr="disabled" wire:target="validateHome"
+                                                        class="btn mt-2 btn-sm btn-success text-white">
+                                                        <span wire:loading.remove wire:target="validateHome">Validar</span>
+                                                        <span wire:loading wire:target="validateHome">
+                                                            <i class="fa fa-spinner fa-spin"></i> A processar...
+                                                        </span>
+                                                    </button>
+                                                @endcan
+                                            @else
+                                                <span
+                                                    class="badge bg-success text-white">{{ ucfirst($home->status) }}</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -97,7 +140,8 @@
             </div>
 
         </div>
+       
     </div>
-    @include('livewire.home-rent.modal.add')
     @include('inc.footer')
+    @include('livewire.home-rent.modal.add')
 </div>
