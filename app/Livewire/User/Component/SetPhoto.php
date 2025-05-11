@@ -31,9 +31,12 @@ class SetPhoto extends Component
         $user->save();
         $this->dispatch('alerta', [
             'icon' => 'success',
-            'btn' => true,
             'title' => 'Sucesso',
             'html' => 'Foto carregada com sucesso'
+        ]);
+        $this->dispatch('atrazar_redirect', [
+            'path' => '/perfil',
+            'time' => 1000
         ]);
     }
     public function render()

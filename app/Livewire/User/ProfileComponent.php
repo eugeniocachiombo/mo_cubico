@@ -58,7 +58,15 @@ class ProfileComponent extends Component
         $this->phone = $this->user->phone;
         $this->nif = $this->user->nif;
         $this->province_id = $this->user->province_id;
+
+        $this->municipalities = Municipality::where("province_id", $this->province_id)
+            ->orderBy("description", "asc")
+            ->get();
         $this->municipality_id = $this->user->municipality_id;
+        $this->addresses = Address::where("municipality_id", $this->municipality_id)
+            ->where("province_id", $this->province_id)
+            ->orderBy("description", "asc")
+            ->get();
         $this->address_id = $this->user->address_id;
     }
 
