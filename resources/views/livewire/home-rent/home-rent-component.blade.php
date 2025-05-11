@@ -11,7 +11,7 @@
                         <h4>Registrar Imóvel</h4>
                     </div>
                     <div class="col-6 d-flex justify-content-end ">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
+                        <button type="button" wire:click.prevent='clearFilds' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
                             <i class="fas fa-plus-circle"></i> Registrar
                         </button>
                     </div>
@@ -37,6 +37,7 @@
                                         <th class="text-center" scope="col">Responsável</th>
                                     @endcan
                                     <th class="text-center" scope="col">Estado</th>
+                                    <th class="text-center" scope="col">Acção</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -110,7 +111,7 @@
                                                 <span
                                                     class="badge bg-primary text-white">{{ ucfirst($home->status) }}</span>
                                                 <br>
-                                               
+
                                                 @can('admin')
                                                     <button type="button"
                                                         wire:click.prevent='validateHome({{ $home->id }})'
@@ -122,6 +123,19 @@
                                                 <span
                                                     class="badge bg-success text-white">{{ ucfirst($home->status) }}</span>
                                             @endif
+                                        </td>
+
+                                        <td>
+                                            <div class="d-flex">
+                                                <button type="button" wire:click='setData({{ $home->id }})'
+                                                    class="btn btn-sm btn-dark me-2" data-bs-toggle="modal"
+                                                    data-bs-target="#add">
+                                                    <i class="fas fa-pen"></i>
+                                                </button>
+                                                <button type="button" wire:click='delete({{ $home->id }})' class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty
@@ -136,7 +150,7 @@
             </div>
 
         </div>
-       
+
     </div>
     @include('inc.footer')
     @include('livewire.home-rent.modal.add')

@@ -19,6 +19,7 @@ class HomeRentComponent extends Component
     use WithFileUploads;
 
     public $edit;
+    public $home_id;
     public $title;
     public $description;
     public $price;
@@ -75,7 +76,7 @@ class HomeRentComponent extends Component
     {
         $this->getLocal();
         return view('livewire.home-rent.home-rent-component', [
-            'users' => User::where("access_id", "!=", 1)->where("access_id", "!=", 4)->get(),
+            'users' => User::where("access_id", "!=", 1)->where("access_id", "!=", 4)->orderBy("first_name", "asc")->get(),
             'accesses' => Access::all(),
             'provinces' => Province::orderBy("description", "asc")->get(),
             'homes' => $this->getHomes(),
@@ -96,7 +97,7 @@ class HomeRentComponent extends Component
     {
         if ($this->province_id) {
             $this->municipalities = Municipality::where("province_id", $this->province_id)
-            ->orderBy("description", "asc")->get();
+                ->orderBy("description", "asc")->get();
         }
 
         if ($this->municipality_id && $this->province_id) {
@@ -117,8 +118,8 @@ class HomeRentComponent extends Component
             'html' => 'Operação realizada com sucesso',
         ]);
         $this->dispatch('atrazar_redirect', [
-            'path' => '/imovéis/registros', 
-            'time' => 2000
+            'path' => '/imovéis/registros',
+            'time' => 2000,
         ]);
     }
 
@@ -171,6 +172,98 @@ class HomeRentComponent extends Component
         }
     }
 
+    public function setData($home_id)
+    {
+        $this->edit = true;
+        $home = Home::find($home_id);
+        $this->title = $home->title;
+        $this->description = $home->description;
+        $this->price = number_format($home->price, 2, ",", ".");
+        $this->owner = $home->owner;
+        $this->responsible = Auth::user()->id;
+        $this->province_id = $home->province_id;
+
+        $this->municipalities = Municipality::where("province_id", $this->province_id)
+            ->orderBy("description", "asc")->get();
+        $this->municipality_id = $home->municipality_id;
+        $this->addresses = Address::where("municipality_id", $this->municipality_id)
+            ->where("province_id", $this->province_id)
+            ->orderBy("description", "asc")->get();
+        $this->address_id = $home->address_id;
+    }
+
+    public function update()
+    {
+        $this->validate();
+        try {
+
+            DB::beginTransaction();
+
+            $photoPath = null;
+            if ($this->photo) {
+                $photoPath = $this->photo->store('imoveis-photos', 'public');
+            }
+
+            $priceRmPoint = str_replace(".", "", $this->price);
+            $priceFinal = str_replace(",", ".", $priceRmPoint);
+
+            Home::where("id", $this->home_id)->update([
+                'title' => $this->title,
+                'description' => $this->description,
+                'price' => $priceFinal,
+                'photo' => $photoPath,
+                'owner' => $this->owner,
+                'responsible' => Auth::user()->id,
+                'address_id' => $this->address_id,
+                'province_id' => $this->province_id,
+                'municipality_id' => $this->municipality_id,
+                'status' => 'pendente',
+            ]);
+
+            DB::commit();
+            $this->dispatch('alerta', [
+                'icon' => 'success',
+                'title' => 'Sucesso',
+                'html' => 'Operação realizada com sucesso',
+            ]);
+            $this->clearFilds();
+            $this->dispatch('closemodal');
+            $this->dispatch('atrazar_redirect', ['path' => '/imovéis/registros', 'time' => 2000]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            // dd($th->getMessage(), $th->getLine());
+            $this->dispatch('alerta', [
+                'icon' => 'error',
+                'btn' => true,
+                'title' => 'Falha',
+                'html' => 'Erro ao realizar operação',
+            ]);
+        }
+    }
+
+    public function delete($home_id)
+    {
+        try {
+            $home = Home::find($home_id);
+            $home->delete();
+            $this->dispatch('alerta', [
+                'icon' => 'success',
+                'title' => 'Sucesso',
+                'html' => 'Operação realizada com sucesso',
+            ]);
+            $this->dispatch('atrazar_redirect', ['path' => '/imovéis/registros', 'time' => 2000]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            //dd($th->getMessage(), $th->getLine());
+            $this->dispatch('alerta', [
+                'icon' => 'error',
+                'btn' => true,
+                'title' => 'Falha',
+                'html' => 'Erro ao realizar operação',
+            ]);
+        }
+    }
+
     public function removePhoto()
     {
         $this->photo = null;
@@ -205,8 +298,8 @@ class HomeRentComponent extends Component
         ]);
 
         $this->addresses = Address::where("municipality_id", $this->municipality_id)
-        ->where("province_id", $this->province_id)
-        ->orderBy("description", "asc")->get();
+            ->where("province_id", $this->province_id)
+            ->orderBy("description", "asc")->get();
         $this->address_id = $address->id;
         $this->addressDesc = null;
         $this->dispatch('closemodalAddresses');
@@ -229,7 +322,7 @@ class HomeRentComponent extends Component
         ]);
 
         $this->municipalities = Municipality::where("province_id", $this->province_id)
-        ->orderBy("description", "asc")->get();
+            ->orderBy("description", "asc")->get();
         $this->municipality_id = $municipality->id;
         $this->municipaltyDesc = null;
         $this->dispatch('closemodalMunicipality');
@@ -237,6 +330,7 @@ class HomeRentComponent extends Component
 
     public function clearFilds()
     {
+        $this->edit = null;
         $this->title = null;
         $this->description = null;
         $this->price = null;

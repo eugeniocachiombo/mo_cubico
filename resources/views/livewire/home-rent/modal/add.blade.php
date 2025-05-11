@@ -154,7 +154,7 @@
                                 wire:target="save" class="btn btn-primary px-4 py-2">
                                 <span wire:loading.remove wire:target="save">Registrar</span>
                                 <span wire:loading wire:target="save">
-                                    <i class="fa fa-spinner fa-spin"></i> 
+                                    <i class="fa fa-spinner fa-spin"></i> Registrar
                                 </span>
                             </button>
                         </div>
