@@ -6,6 +6,7 @@
             @endif
         </div>
         @foreach ($homes->chunk(3) as $index => $homeChunk)
+        
             <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                 <div class="row g-5 py-5">
                     @foreach ($homeChunk as $home)
@@ -61,6 +62,7 @@
                     @endforeach
                 </div>
             </div>
+        
         @endforeach
     </div>
     <!-- Controles de navegação do carrossel -->

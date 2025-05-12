@@ -15,7 +15,7 @@ class DashboardComponent extends Component
         return view('livewire.home.dashboard-component', [
             "total"  => $this->getHomes(),
             "pendings"  => Home::where("status", "pendente")->get(),
-            "validates" => Home::where("status", "validados")->get(),
+            "validates" => Home::where("status", "validado")->get(),
             "custumers" => User::where("access_id", 4)->get(),
             "intermediates" => User::where("access_id", 2)->get(),
             "owners" => User::where("access_id", 3)->get(),

@@ -135,6 +135,16 @@
     border-color: var(--primary);
 }
 
+.active_whitemode{
+    color: white;
+    background: var(--dark);
+    border-color: white;
+}
+
+.active_whitemode:hover {
+    color: white;
+}
+
 .sidebar .navbar .navbar-nav .nav-link i {
     width: 40px;
     height: 40px;
@@ -207,6 +217,7 @@
 .content .navbar .dropdown-item.active {
     background: var(--dark);
 }
+
 
 .content .navbar .dropdown-toggle::after {
     margin-left: 6px;

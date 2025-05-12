@@ -1,5 +1,5 @@
 @section('title', 'Painel Principal')
-<div class="content">
+<div class="content " style="background: {{auth()->user()->getDarkMode ? '' : 'whitesmoke' }}">
 
     @include('inc.header')
 
@@ -7,59 +7,59 @@
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
             <div class="col-sm-6 col-xl-3">
-                <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-home fa-3x text-primary"></i>
+                <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-home fa-3x {{auth()->user()->getDarkMode ? 'text-primary' : 'text-dark' }}"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Total</p>
-                        <h6 class="mb-0">{{ count($total) }}</h6>
+                        <p class="mb-2 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">Total</p>
+                        <h6 class="mb-0 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">{{ count($total) }}</h6>
                     </div>
                 </div>
             </div>
             @if (!Gate::allows('inquilino'))
                 <div class="col-sm-6 col-xl-3">
-                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                        <i class="fa fa-clock fa-3x text-primary"></i>
+                    <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-clock fa-3x {{auth()->user()->getDarkMode ? 'text-primary' : 'text-dark' }}"></i>
                         <div class="ms-3">
-                            <p class="mb-2">Pendentes</p>
-                            <h6 class="mb-0">{{ count($pendings) }}</h6>
+                            <p class="mb-2 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">Pendentes</p>
+                            <h6 class="mb-0 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">{{ count($pendings) }}</h6>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xl-3">
-                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                        <i class="fa fa-check fa-3x text-primary"></i>
+                    <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-check fa-3x {{auth()->user()->getDarkMode ? 'text-primary' : 'text-dark' }}"></i>
                         <div class="ms-3">
-                            <p class="mb-2">Validados</p>
-                            <h6 class="mb-0">{{ count($validates) }}</h6>
+                            <p class="mb-2 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">Validados</p>
+                            <h6 class="mb-0 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">{{ count($validates) }}</h6>
                         </div>
                     </div>
                 </div>
             @endif
             <div class="col-sm-6 col-xl-3">
-                <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-hands fa-3x text-primary"></i>
+                <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-handshake fa-3x {{auth()->user()->getDarkMode ? 'text-primary' : 'text-dark' }}"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Contratos</p>
-                        <h6 class="mb-0">0</h6>
+                        <p class="mb-2 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">Contratos</p>
+                        <h6 class="mb-0 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">0</h6>
                     </div>
                 </div>
             </div>
             @if (Gate::allows('inquilino'))
                 <div class="col-sm-6 col-xl-3">
-                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                        <i class="fa fa-users fa-3x text-primary"></i>
+                    <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-users fa-3x {{auth()->user()->getDarkMode ? 'text-primary' : 'text-dark' }}"></i>
                         <div class="ms-3">
-                            <p class="mb-2">Arrendadores</p>
-                            <h6 class="mb-0">{{ count($owners) }}</h6>
+                            <p class="mb-2 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">Arrendadores</p>
+                            <h6 class="mb-0 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">{{ count($owners) }}</h6>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xl-3">
-                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                        <i class="fa fa-users fa-3x text-primary"></i>
+                    <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-users fa-3x {{auth()->user()->getDarkMode ? 'text-primary' : 'text-dark' }}"></i>
                         <div class="ms-3">
-                            <p class="mb-2">Intermediários</p>
-                            <h6 class="mb-0">{{ count($intermediates) }}</h6>
+                            <p class="mb-2 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">Intermediários</p>
+                            <h6 class="mb-0 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">{{ count($intermediates) }}</h6>
                         </div>
                     </div>
                 </div>
@@ -73,9 +73,9 @@
         <div class="container-fluid pt-4 px-4">
             <div class="row g-4">
                 <div class="col-sm-12 col-xl-6">
-                    <div class="bg-secondary text-center rounded p-4">
+                    <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} text-center rounded p-4">
                         <div class="d-flex align-items-center justify-content-between mb-4">
-                            <h6 class="mb-0">Utilizadores</h6>
+                            <h6 class="mb-0 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">Utilizadores</h6>
                             <a href="">Mostrar Tudo</a>
                         </div>
                         <canvas id="worldwide-sales"></canvas>
@@ -83,9 +83,9 @@
                 </div>
 
                 <div class="col-sm-12 col-xl-6">
-                    <div class="bg-secondary text-center rounded p-4">
+                    <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} text-center rounded p-4">
                         <div class="d-flex align-items-center justify-content-between mb-4">
-                            <h6 class="mb-0">Documentos Emitidos</h6>
+                            <h6 class="mb-0 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">Documentos Emitidos</h6>
                             <a href="">Mostrar Tudo</a>
                         </div>
                         <canvas id="salse-revenue"></canvas>
@@ -105,15 +105,15 @@
     <!--  Contratos Start -->
     @can('admin')
         <div class="container-fluid pt-4 px-4">
-            <div class="bg-secondary text-center rounded p-4">
+            <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h6 class="mb-0">Contratos Recentes</h6>
+                    <h6 class="mb-0 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">Contratos Recentes</h6>
                     <a href="">Mostrar Tudo</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table text-start align-middle table-bordered table-hover mb-0">
                         <thead>
-                            <tr class="text-white">
+                            <tr class="{{auth()->user()->getDarkMode ? 'text-white' : 'text-dark' }}">
                                 <th scope="col"><input class="form-check-input" type="checkbox"></th>
                                 <th scope="col">Data</th>
                                 <th scope="col">Fatura</th>

@@ -1,22 +1,24 @@
 <!-- Navbar Start -->
-<nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+<nav class="navbar navbar-expand {{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} navbar-dark sticky-top px-4 py-0">
     <a href="/" class="navbar-brand d-flex d-lg-none me-4">
         <h2 class="text-primary mb-0"><img style="width: 40px" src="{{ asset('assets/images/logo/redlogo.png') }}"
                 alt=""></h2>
     </a>
-    <a href="#" class="sidebar-toggler flex-shrink-0">
-        <i class="fa fa-bars"></i>
+    <a href="#" class="sidebar-toggler flex-shrink-0 ">
+        <i class="fa fa-bars {{auth()->user()->getDarkMode ? '' : 'text-white' }}"></i>
     </a>
     <form class="d-none d-md-flex ms-4">
-        <input class="form-control bg-dark border-0" type="search" placeholder="Pesquisar">
+        <input class="form-control {{auth()->user()->getDarkMode ? 'bg-dark border-0' : '' }} " 
+        style="{{auth()->user()->getDarkMode ? '' : 'background: transparent' }}"
+        type="search" placeholder="Pesquisar">
     </form>
     <div class="navbar-nav align-items-center ms-auto">
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <i class="fa fa-envelope me-lg-2"></i>
-                <span class="d-none d-lg-inline-flex">Mensagens</span>
+                <i class="fa fa-envelope me-lg-2 {{auth()->user()->getDarkMode ? '' : 'text-white' }}"></i>
+                <span class="d-none d-lg-inline-flex {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">Mensagens</span>
             </a>
-            <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+            <div class="dropdown-menu dropdown-menu-end border-0 rounded-0 rounded-bottom m-0">
                 <a href="#" class="dropdown-item">
                     <div class="d-flex align-items-center">
                         <img class="rounded-circle" src="img/user.jpg" alt=""
@@ -55,8 +57,8 @@
         </div>
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <i class="fa fa-bell me-lg-2"></i>
-                <span class="d-none d-lg-inline-flex">Notificações</span>
+                <i class="fa fa-bell me-lg-2 {{auth()->user()->getDarkMode ? '' : 'text-white' }}"></i>
+                <span class="d-none d-lg-inline-flex {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">Notificações</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                 <a href="#" class="dropdown-item">
@@ -94,10 +96,10 @@
                 @endif
 
             </a>
-            <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                <a href="{{ route('user.profile') }}" class="dropdown-item">Meu Perfil</a>
-                <a href="#" class="dropdown-item">Configurações</a>
-                <a href="{{ route('pages.logout') }}" class="dropdown-item">Sair</a>
+            <div class="dropdown-menu dropdown-menu-end border-0 rounded-0 rounded-bottom m-0">
+                <a href="{{ route('user.profile') }}" class="dropdown-item ">Meu Perfil</a>
+                <a href="#" class="dropdown-item ">Configurações</a>
+                <a href="{{ route('pages.logout') }}" class="dropdown-item ">Sair</a>
             </div>
         </div>
     </div>

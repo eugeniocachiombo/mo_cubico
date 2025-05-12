@@ -60,4 +60,7 @@ class User extends Authenticatable
     public function getAddress(){
         return $this->belongsTo(Address::class, "address_id", "id");
     }
+    public function getDarkMode(){
+        return $this->belongsTo(DarkMode::class, "id", "user_id");
+    }
 }
