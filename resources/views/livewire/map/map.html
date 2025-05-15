@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mapa de Angola com Busca</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 0; margin: 0; }
+    #map { height: 500px; }
+    #search-box {
+      padding: 10px;
+      background: #f2f2f2;
+    }
+    input[type="text"] {
+      padding: 6px;
+      width: 300px;
+    }
+    button {
+      padding: 6px 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="search-box">
+    <input type="text" id="search" placeholder="Digite o nome da zona ou cidade em Angola">
+    <button onclick="searchLocation()">Buscar</button>
+    <p id="search-result"></p>
+  </div>
+
+  <div id="map"></div>
+  <p id="coords">Clique no mapa para ver latitude e longitude.</p>
+
+  <script>
+    // Inicializa o mapa focado em Angola
+    var map = L.map('map').setView([-11.2027, 17.8739], 6); // Centro aproximado de Angola
+
+    // Camada base
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // Evento de clique no mapa
+    map.on('click', function(e) {
+      var lat = e.latlng.lat.toFixed(6);
+      var lng = e.latlng.lng.toFixed(6);
+      document.getElementById('coords').innerText = `Latitude: ${lat}, Longitude: ${lng}`;
+    });
+
+    // Função de busca
+    function searchLocation() {
+      var query = document.getElementById('search').value;
+      var url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)} Angola`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.length > 0) {
+            var lat = parseFloat(data[0].lat);
+            var lon = parseFloat(data[0].lon);
+            map.setView([lat, lon], 13);
+
+            // Adiciona um marcador na localização
+            L.marker([lat, lon]).addTo(map)
+              .bindPopup(`Resultado da busca: ${data[0].display_name}`)
+              .openPopup();
+
+            document.getElementById('search-result').innerText = `Encontrado: ${data[0].display_name}`;
+          } else {
+            document.getElementById('search-result').innerText = "Local não encontrado.";
+          }
+        })
+        .catch(error => {
+          console.error('Erro na busca:', error);
+          document.getElementById('search-result').innerText = "Erro ao buscar localização.";
+        });
+    }
+  </script>
+
+<iframe
+    style="width: 100%;height: 500px; border: 0;"
+    src="https:// www.google.com/ maps?q= -9.007017,13.188933 &output=embed"
+    allowfullscreen>
+  </iframe>
+
+</body>
+</html>

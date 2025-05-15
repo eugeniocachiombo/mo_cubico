@@ -1,12 +1,12 @@
 @section('title', 'Painel Principal')
-<div class="content " style="background: {{auth()->user()->getDarkMode ? '' : 'whitesmoke' }}">
+<div class="content " style="background: {{auth()->user()->getDarkMode ? '' : 'rgba(200,200,200,50)' }};" >
 
     @include('inc.header')
 
     <!-- Sale & Revenue Start -->
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
-            <div class="col-sm-6 col-xl-3">
+            <div class="col-sm-6 col-xl-3 card-animated">
                 <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} rounded d-flex align-items-center justify-content-between p-4">
                     <i class="fa fa-home fa-3x {{auth()->user()->getDarkMode ? 'text-primary' : 'text-dark' }}"></i>
                     <div class="ms-3">
@@ -16,7 +16,7 @@
                 </div>
             </div>
             @if (!Gate::allows('inquilino'))
-                <div class="col-sm-6 col-xl-3">
+                <div class="col-sm-6 col-xl-3 card-animated">
                     <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} rounded d-flex align-items-center justify-content-between p-4">
                         <i class="fa fa-clock fa-3x {{auth()->user()->getDarkMode ? 'text-primary' : 'text-dark' }}"></i>
                         <div class="ms-3">
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-xl-3">
+                <div class="col-sm-6 col-xl-3 card-animated">
                     <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} rounded d-flex align-items-center justify-content-between p-4">
                         <i class="fa fa-check fa-3x {{auth()->user()->getDarkMode ? 'text-primary' : 'text-dark' }}"></i>
                         <div class="ms-3">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             @endif
-            <div class="col-sm-6 col-xl-3">
+            <div class="col-sm-6 col-xl-3 card-animated">
                 <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} rounded d-flex align-items-center justify-content-between p-4">
                     <i class="fa fa-handshake fa-3x {{auth()->user()->getDarkMode ? 'text-primary' : 'text-dark' }}"></i>
                     <div class="ms-3">
@@ -45,7 +45,7 @@
                 </div>
             </div>
             @if (Gate::allows('inquilino'))
-                <div class="col-sm-6 col-xl-3">
+                <div class="col-sm-6 col-xl-3 card-animated">
                     <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} rounded d-flex align-items-center justify-content-between p-4">
                         <i class="fa fa-users fa-3x {{auth()->user()->getDarkMode ? 'text-primary' : 'text-dark' }}"></i>
                         <div class="ms-3">
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-xl-3">
+                <div class="col-sm-6 col-xl-3 card-animated">
                     <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} rounded d-flex align-items-center justify-content-between p-4">
                         <i class="fa fa-users fa-3x {{auth()->user()->getDarkMode ? 'text-primary' : 'text-dark' }}"></i>
                         <div class="ms-3">
@@ -70,9 +70,9 @@
 
     <!-- Users Chart Start -->
     @if (!Gate::allows('inquilino'))
-        <div class="container-fluid pt-4 px-4">
+        <div class="container-fluid pt-4 px-4 ">
             <div class="row g-4">
-                <div class="col-sm-12 col-xl-6">
+                <div class="col-sm-12 col-xl-6 card-animated">
                     <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} text-center rounded p-4">
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <h6 class="mb-0 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">Utilizadores</h6>
@@ -82,7 +82,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-xl-6">
+                <div class="col-sm-12 col-xl-6 card-animated">
                     <div class="{{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} text-center rounded p-4">
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <h6 class="mb-0 {{auth()->user()->getDarkMode ? '' : 'text-dark' }}">Documentos Emitidos</h6>
