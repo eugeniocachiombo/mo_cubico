@@ -1,7 +1,10 @@
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand {{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} navbar-dark sticky-top px-4 py-0">
     <a href="/" class="navbar-brand d-flex d-lg-none me-4">
-        <h2 class="text-primary mb-0"><img style="width: 40px" src="{{ asset('assets/images/logo/redlogo.png') }}"
+        @php
+            $logo = auth()->user()->getDarkMode ? 'redlogo' : 'blacklogo';
+        @endphp
+        <h2 class="text-primary mb-0"><img style="width: 40px" src="{{ asset('assets/images/logo/'.$logo.'.png') }}"
                 alt=""></h2>
     </a>
     <a href="#" class="sidebar-toggler flex-shrink-0 ">

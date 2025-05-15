@@ -10,6 +10,8 @@ use Livewire\Component;
 
 class DashboardComponent extends Component
 {
+
+
     public function render()
     {
         return view('livewire.home.dashboard-component', [
@@ -22,6 +24,7 @@ class DashboardComponent extends Component
             'homes' => Home::where("status", "validado")
             ->orderBy('id', 'desc')
             ->get(),
+            "darkmode" => auth()->user()->getDarkMode ?? ''
         ])
         ->layout("components.layouts.app");
     }
