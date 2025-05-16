@@ -1,8 +1,8 @@
 @section('title', 'Criar Conta')
 <div class="container-fluid">
     <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
-        <div class="col-12 col-sm-8 col-md-6 col-lg-8">
-            <div class="bg-white rounded p-4 p-sm-5 my-4 mx-3">
+        <div class="col-12 col-lg-8">
+            <div class="bg-white rounded p-4  my-4 mx-3">
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <a href="/" class="">
                         <h3 class="text-primary">@include('inc.namewebsite')</h3>
@@ -11,9 +11,9 @@
                 </div>
                 <hr>
 
-                <form class="container" wire:submit.prevent="save">
+                <form class="container-fluid" wire:submit.prevent="save">
                     <div class="row" style="width: inherit">
-                        <div class="col-md-6 form-floating mb-3">
+                        <div class="col-12 col-md-6 form-floating mb-3">
                             <input type="text" wire:model="first_name" class="form-control" id="first_name"
                             style="border: 0.5px solid #222; 
                             color: black;
@@ -25,7 +25,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-6 form-floating mb-3">
+                        <div class="col-12 col-md-6 form-floating mb-3">
                             <input type="text" wire:model="last_name" class="form-control" id="last_name"
                             style="border: 0.5px solid #222; 
                             color: black;
@@ -37,7 +37,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-6 form-floating mb-3">
+                        <div class="col-12 col-md-6 form-floating mb-3">
                             <select wire:model="gender" 
                             style="border: 0.5px solid #222; 
                             color: black;
@@ -53,7 +53,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-6 form-floating mb-3">
+                        <div class="col-12 col-md-6 form-floating mb-3">
                             <input type="date" wire:model="birth_date" class="form-control" id="birth_date"
                             style="border: 0.5px solid #222; 
                             color: black;
@@ -65,7 +65,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-6 form-floating mb-3">
+                        <div class="col-12 col-md-6 form-floating mb-3">
                             <input type="email" wire:model="email" class="form-control" id="email"
                             style="border: 0.5px solid #222; 
                             color: black;
@@ -77,7 +77,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-6 form-floating mb-3">
+                        <div class="col-12 col-md-6 form-floating mb-3">
                             <input type="number" wire:model="phone" class="form-control" id="phone"
                             style="border: 0.5px solid #222; 
                             color: black;
@@ -89,31 +89,31 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-6 form-floating mb-3">
+                        <div class="col-12 col-md-6 form-floating mb-3">
                             <input type="password" wire:model="password" class="form-control" id="password"
                             style="border: 0.5px solid #222; 
                             color: black;
                             background: transparent"    
                             placeholder="Palavra-passe">
-                            <label class="ms-2" for="password">Palavra-passe</label>
+                            <label class="ms-2" for="password">Palavra-Passe</label>
                             @error('password')
                                 <span class="text-danger mt-2">{{ $message }}</span>
                             @enderror
                         </div>
 
-                        <div class="col-md-6 form-floating mb-4">
+                        <div class="col-12 col-md-6 form-floating mb-4">
                             <input type="password" wire:model="confirmpassword" wire:change="check_password"
                             style="border: 0.5px solid #222; 
                             color: black;
                             background: transparent"    
                             class="form-control" id="confirmpassword" placeholder="Confirmar Palavra-passe">
-                            <label class="ms-2" for="confirmpassword">Confirmar Palavra-passe</label>
+                            <label class="ms-2" for="confirmpassword">Confirmar Passe</label>
                             @error('confirmpassword')
                                 <span class="text-danger mt-2">{{ $message }}</span>
                             @enderror
                         </div>
 
-                        <div class="col-md-6 form-floating mb-3">
+                        <div class="col-12 col-md-6 form-floating mb-3">
                             <select wire:model="access_id" 
                             style="border: 0.5px solid #222; 
                             color: black;

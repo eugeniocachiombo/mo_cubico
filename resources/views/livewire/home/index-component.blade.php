@@ -149,13 +149,12 @@
     <!-- About Start -->
     <div id="about" class="container-fluid p-5 mt-5 bg-white">
         <div class="row gx-5 mt-5">
-            <div class="col-lg-5 mb-lg-0 wow fadeIn" data-wow-delay="0.1s" style="min-height: 500px;">
-                <div class="">
-                    
+            <div class="col-lg-5 d-flex justify-content-center align-items-center mb-lg-0 wow fadeIn" data-wow-delay="0.1s" style="min-height: 500px;">
+                
                     <img class=" rounded-circle rounded-bottom rounded-end"
                         src="{{ asset('assets/images/logo/blacklogo.png') }}" 
-                        style="object-fit: cover; width: 378px" alt="Sobre nós">
-                </div>
+                        style="object-fit: cover; width: 300px" alt="Sobre nós">
+                
             </div>
             <div class="col-lg-7">
                 <div class="mb-4 wow fadeIn" data-wow-delay="0.2s">
@@ -167,7 +166,7 @@
                     Aqui, os donos de casas podem cadastrar suas casas para aluguel, enquanto os interessados
                     conseguem buscar a moradia ideal de forma rápida e eficiente.
                 </p>
-                <div class="row d-none d-md-flex">
+                <div class="row d-none d-lg-flex">
                     <div id="owners" style="height: 5px" class="col-sm-6 wow fadeIn" data-wow-delay="0.4s">
                         <div class="bg-light rounded p-4">
                             <i class="fas fa-home fa-2x text-white"></i>
@@ -427,15 +426,15 @@
                         <h3 class="text-light mb-4">Fale Conosco</h3>
                         <div class="d-flex mb-2">
                             <i class="bi bi-geo-alt text-primary me-2"></i>
-                            <p class="mb-0">Maianga, Luanda, Angola</p>
+                            <p class="mb-0 text-white">Maianga, Luanda, Angola</p>
                         </div>
                         <div class="d-flex mb-2">
                             <i class="bi bi-envelope-open text-primary me-2"></i>
-                            <p class="mb-0">contato@aluguelcasas.com</p>
+                            <p class="mb-0 text-white">contato@aluguelcasas.com</p>
                         </div>
                         <div class="d-flex mb-2">
                             <i class="bi bi-telephone text-primary me-2"></i>
-                            <p class="mb-0">+55 11 91234-5678</p>
+                            <p class="mb-0 text-white">+55 11 91234-5678</p>
                         </div>
                         <div class="d-flex mt-4">
                             <a class="btn btn-primary btn-square rounded-circle me-2" href="#"><i
@@ -451,34 +450,34 @@
                     <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
                         <h3 class="text-light mb-4">Links Úteis</h3>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-white mb-2" href="#"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Início</a>
-                            <a class="text-secondary mb-2" href="#about"><i
+                            <a class="text-white mb-2" href="#about"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Sobre Nós</a>
-                            <a class="text-secondary mb-2" href="#mission"><i
+                            <a class="text-white mb-2" href="#mission"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Nossa Missão</a>
-                            <a class="text-secondary mb-2" href="#team"><i
+                            <a class="text-white mb-2" href="#team"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Equipa</a>
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-white mb-2" href="#"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Nossas Casas</a>
-                            <a class="text-secondary" href="#contact"><i
+                            <a class="text-white" href="#contact"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Contacto</a>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
                         <h3 class="text-light mb-4">Mais Informações</h3>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-white mb-2" href="#"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Como Funciona</a>
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-white mb-2" href="#"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Intermediários</a>
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-white mb-2" href="#"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Arrendadores</a>
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-white mb-2" href="#"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Dicas</a>
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-white mb-2" href="#"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Blog</a>
-                            <a class="text-secondary" href="#"><i
+                            <a class="text-white" href="#"><i
                                     class="bi bi-arrow-right text-primary me-2"></i>Ajuda</a>
                         </div>
                     </div>
