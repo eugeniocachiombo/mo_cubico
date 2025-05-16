@@ -8,7 +8,7 @@
         
         @include('inc.loading')
 
-        @include('inc.sidebar')
+        @livewire('inc.sidebar-component')
 
 
         <!-- Content Start -->

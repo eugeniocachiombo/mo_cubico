@@ -101,7 +101,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end border-0 rounded-0 rounded-bottom m-0">
                 <a href="{{ route('user.profile') }}" class="dropdown-item ">Meu Perfil</a>
-                <a href="#" class="dropdown-item ">Configurações</a>
+                <a href="{{ route('user.config') }}" class="dropdown-item ">Configurações</a>
                 <a href="{{ route('pages.logout') }}" class="dropdown-item ">Sair</a>
             </div>
         </div>
