@@ -1,14 +1,14 @@
 @section('title', 'Imóveis')
-<div class="content">
+<div class="content" style="background: {{ $darkmode ? '' : 'rgba(200,200,200,50)' }};">
 
     @include('inc.header')
 
     <div class="container-fluid pt-4 px-4">
-        <div class="row bg-secondary rounded align-items-center justify-content-center mx-0" style="min-height: 65vh">
+        <div class="row {{ auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} rounded align-items-center justify-content-center mx-0" style="min-height: 65vh">
             <div class="row pt-4 pb-2">
                 @if (!Gate::allows('inquilino'))
                     <div class="col-6">
-                        <h4>Lista de Imóveis</h4>
+                        <h4 class="{{ auth()->user()->getDarkMode ? '' : 'text-dark' }}">Lista de Imóveis</h4>
                     </div>
                     <div class="col-6 d-flex justify-content-end ">
                         <button type="button" wire:click.prevent='clearFilds' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
@@ -23,7 +23,7 @@
             </div>
 
             <div class="col-12">
-                <div class="bg-secondary">
+                <div class="{{ auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }}">
                     <h6 class="mb-4"></h6>
                     <div class="table-responsive">
                         <table wire:ignore class="table table-hover datatablePT py-4">

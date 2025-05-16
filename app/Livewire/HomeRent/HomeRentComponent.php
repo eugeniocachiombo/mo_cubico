@@ -80,6 +80,7 @@ class HomeRentComponent extends Component
             'accesses' => Access::all(),
             'provinces' => Province::orderBy("description", "asc")->get(),
             'homes' => $this->getHomes(),
+            "darkmode" => auth()->user()->getDarkMode ?? ''
         ])
             ->layout("components.layouts.app");
     }

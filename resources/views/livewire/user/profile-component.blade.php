@@ -112,9 +112,7 @@
                                                         <div class="col-md-6">
                                                             <label for="first_name">Nome</label>
                                                             <input
-                                                                {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
-                                                        color: black;
-                                                        background: transparent'" }}
+                                                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
                                                                 class="form-control" type="text"
                                                                 wire:model='first_name' name="first_name"
                                                                 id="first_name" />
@@ -126,9 +124,7 @@
                                                         <div class="col-md-6">
                                                             <label for="last_name">Sobrenome</label>
                                                             <input
-                                                                {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
-                                                        color: black;
-                                                        background: transparent'" }}
+                                                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
                                                                 class="form-control" type="text"
                                                                 wire:model='last_name' name="last_name"
                                                                 id="last_name" />
@@ -140,9 +136,7 @@
                                                         <div class="col-md-6">
                                                             <label for="gender">Gênero</label>
                                                             <select
-                                                            {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
-                                                        color: black;
-                                                        background: transparent'" }}
+                                                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
                                                             class="form-select" wire:model='gender'
                                                                 name="gender" id="gender">
                                                                 <option value="">Selecione</option>
@@ -156,9 +150,7 @@
                                                         <div class="col-md-6">
                                                             <label for="birth_date">Nascimento</label>
                                                             <input
-                                                                {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
-                                                        color: black;
-                                                        background: transparent'" }}
+                                                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
                                                                 class="form-control" type="date"
                                                                 wire:model='birth_date' name="birth_date"
                                                                 id="birth_date" />
@@ -170,9 +162,7 @@
                                                         <div class="col-md-6">
                                                             <label for="email">E-mail</label>
                                                             <input
-                                                                {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
-                                                        color: black;
-                                                        background: transparent'" }}
+                                                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
                                                                 type="email" wire:model='email'
                                                                 class="form-control" name="email" id="email" />
                                                             @error('email')
@@ -183,9 +173,7 @@
                                                         <div class="col-md-6">
                                                             <label for="phone">Telefone</label>
                                                             <input
-                                                                {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
-                                                        color: black;
-                                                        background: transparent'" }}
+                                                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
                                                                 type="number" wire:model='phone'
                                                                 class="form-control" name="phone" id="phone" />
                                                             @error('phone')
@@ -196,9 +184,7 @@
                                                         <div class="col-md-6">
                                                             <label class=" nif">NIF/BI</label>
                                                             <input
-                                                                {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
-                                                        color: black;
-                                                        background: transparent'" }}
+                                                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
                                                                 class="form-control" type="text" wire:model='nif'
                                                                 name="nif" id="nif" />
                                                             @error('nif')
@@ -209,9 +195,7 @@
                                                         <div class="col-md-6">
                                                             <label class=" province_id">Província</label>
                                                             <select
-                                                            {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
-                                                        color: black;
-                                                        background: transparent'" }}
+                                                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
                                                             class="form-select" style="width: 100%"
                                                                 wire:change='get_local' wire:model='province_id'
                                                                 name="province_id" id="province_id">
@@ -230,9 +214,7 @@
                                                         <div class="col-md-6">
                                                             <label class=" municipality_id">Município</label>
                                                             <select
-                                                            {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
-                                                        color: black;
-                                                        background: transparent'" }}
+                                                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
                                                             class="form-select" wire:change='get_local'
                                                                 wire:model='municipality_id' name="municipality_id"
                                                                 id="municipality_id">
@@ -251,9 +233,7 @@
                                                         <div class="col-md-6">
                                                             <label class=" address_id">Morada</label>
                                                             <select
-                                                            {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
-                                                        color: black;
-                                                        background: transparent'" }}
+                                                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
                                                             class="form-select" wire:model='address_id'
                                                                 name="address_id" id="address_id">
                                                                 <option value="">Selecione</option>
@@ -291,9 +271,7 @@
                                                     <div class="col-md-7">
                                                         <label class="oldpassword">Antiga</label>
                                                         <input
-                                                        {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
-                                                        color: black;
-                                                        background: transparent'" }}
+                                                        style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
                                                             wire:change='check_password' class="form-control"
                                                             type="password" wire:model='oldpassword'
                                                             name="oldpassword" id="oldpassword" />
@@ -304,9 +282,7 @@
                                                     <div class="col-md-7">
                                                         <label class="newpassword">Nova</label>
                                                         <input
-                                                            {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
-                                                        color: black;
-                                                        background: transparent'" }}
+                                                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
                                                             wire:change='check_password' class="form-control"
                                                             type="password" wire:model='newpassword'
                                                             name="newpassword" id="newpassword" />
@@ -317,9 +293,7 @@
                                                     <div class="col-md-7">
                                                         <label class="confirmpassword">Confirmar</label>
                                                         <input
-                                                            {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
-                                                        color: black;
-                                                        background: transparent'" }}
+                                                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
                                                             wire:change='check_password' class="form-control"
                                                             type="password" wire:model='confirmpassword'
                                                             name="confirmpassword" id="confirmpassword" />
