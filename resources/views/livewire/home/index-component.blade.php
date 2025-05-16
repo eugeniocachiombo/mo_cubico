@@ -2,7 +2,7 @@
 <div>
 
     <!-- Header Start -->
-    <div class="container-fluid bg-dark px-0">
+    <div class="container-fluid bg-white px-0">
         <div class="row gx-0 wow fadeIn" data-wow-delay="0.1s">
             <div class="col-lg-3 bg-primary d-none d-lg-block">
                 <a href="/"
@@ -11,23 +11,23 @@
                 </a>
             </div>
             <div class="col-lg-9">
-                <div class="row gx-0 d-none d-lg-flex bg-dark">
+                <div class="row gx-0 d-none d-lg-flex bg-white">
                     <div class="col-6 px-5 text-start">
                         <div class="h-100 d-inline-flex align-items-center py-2 me-4">
                             <i class="fa fa-envelope text-primary me-2"></i>
-                            <p class="mb-0">info@example.com</p>
+                            <p class="mb-0">mokubico@gmail.com</p>
                         </div>
                     </div>
                     <div class="col-6 px-5 text-end">
                         <div class="h-100 d-inline-flex align-items-center py-2">
                             <i class="fa fa-phone-alt text-primary me-2"></i>
-                            <p class="mb-0">+012 345 6789</p>
+                            <p class="mb-0">+244 912 123 123</p>
                         </div>
                     </div>
                 </div>
                 <nav class="navbar navbar-expand-lg navbar-dark p-3 p-lg-0 px-lg-5" style="background: #111111;">
                     <a href="/" class="navbar-brand d-block d-lg-none">
-                        <h1 class="m-0 display-4 text-primary text-uppercase">@include('inc.namewebsite')</h1>
+                        <h1 class="m-0 display-4 text-white text-uppercase">@include('inc.namewebsitewhite')</h1>
                     </a>
                     <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
                         data-bs-target="#navbarCollapse">
@@ -41,12 +41,12 @@
                             <a href="#team" class="nav-item nav-link">Equipa</a>
                             <a href="#contact" class="nav-item nav-link">Contactos</a>
                         </div>
-                        <div class="d-none d-lg-flex align-items-center py-2">
-                            <a class="btn btn-outline-secondary ms-2 py-2" href="{{ route('pages.login') }}">
-                                <i class="fas fa-user pe-1"></i> <span class="text-light">Entrar</span>
+                        <div class="d-flex align-items-center py-2">
+                            <a class="btn btn-primary ms-2 py-2" href="{{ route('pages.login') }}">
+                                <i class="fas fa-user pe-1"></i> <span class="text-white">Entrar</span>
                             </a>
-                            <a class="btn btn-outline-secondary ms-2 py-2" href="{{route('pages.signup')}}">
-                                <i class="fas fa-user pe-1"></i> <span class="text-light">Criar Conta</span>
+                            <a class="btn btn-primary ms-2 py-2" href="{{ route('pages.signup') }}">
+                                <i class="fas fa-user-plus pe-1"></i> <span class="text-white">Criar Conta</span>
                             </a>
                         </div>
                     </div>
@@ -58,44 +58,43 @@
 
 
     <!-- Hero Start -->
-    <div class="container-fluid p-5 bg-dark text-secondary">
+    <div class="container-fluid p-5 bg-white text-secondary">
         <div class="row g-5 py-5">
             <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
                 <h1 class="display-4 text-secondary text-center mb-0">Encontre aqui o seu novo lar</h1>
             </div>
-            <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-                <img class="img-fluid rounded mb-3"
+            <div class="col-lg-4 wow fadeIn " data-wow-delay="0.1s">
+                <img class="img-fluid rounded mb-3 card-animated"
                     src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">
                 <p>
                     <i class="bi bi-arrow-down animate-up-down" style="font-size: 3rem;"></i>
                 </p>
-                <p class="mb-0 text-light">
+                <p class="mb-0 text-dark">
                     Conectamos proprietários e inquilinos de forma simples e rápida. Cadastre seu imóvel com poucos
                     cliques e encontre o inquilino ideal sem complicação.
                 </p>
             </div>
-            <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s" style="min-height: 500px;">
+            <div class="col-lg-4 wow fadeIn " data-wow-delay="0.3s" style="min-height: 500px;">
                 <div class="position-relative h-100">
-                    <img class="position-absolute w-100 h-100 rounded"
+                    <img class="position-absolute w-100 h-100 rounded card-animated"
                         src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
                         style="object-fit: cover;">
                 </div>
             </div>
             <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-                <p class="text-light">
+                <p class="text-dark">
                     Quer alugar sem dores de cabeça? Use nossos filtros avançados e encontre a casa dos seus sonhos com
                     total segurança e agilidade.
                 </p>
                 <p>
                     <i class="bi bi-arrow-up animate-up-down" style="font-size: 3rem;"></i>
                 </p>
-                <img class="img-fluid rounded"
+                <img class="img-fluid rounded card-animated"
                     src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">
             </div>
         </div>
 
         @include('livewire.post.post')
-        
     </div>
     <!-- Hero End -->
 
@@ -140,36 +139,35 @@
                 <h1 class="display-4 text-secondary mb-4">
                     <span class="text-primary">30% de Desconto</span><br> nas Taxas de Cadastro Este Mês
                 </h1>
-                <a href="{{route('pages.login')}}" class="btn btn-primary py-3 px-5">Cadastre seu Imóvel</a>
+                <a href="{{ route('pages.login') }}" class="btn btn-primary py-3 px-5">Cadastre seu Imóvel</a>
             </div>
         </div>
     </div>
     <!-- Recursos Fim -->
 
-    
+
     <!-- About Start -->
-    <div id="about" class="container-fluid p-5 mt-5">
+    <div id="about" class="container-fluid p-5 mt-5 bg-white">
         <div class="row gx-5 mt-5">
-            <div class="col-lg-5 mb-5 mb-lg-0 wow fadeIn" data-wow-delay="0.1s" style="min-height: 500px;">
-                <div class="position-relative h-100">
-                    <div class="position-absolute top-0 start-0 animate-rotate" style="width: 160px; height: 160px;">
-                        <img class="img-fluid" src="" alt="">
-                    </div>
-                    <img class="position-absolute w-40 h-40 rounded-circle rounded-bottom rounded-end"
-                        src="{{asset('assets/images/logo/whitelogo.png')}}" style="object-fit: cover;" alt="Sobre nós">
+            <div class="col-lg-5 mb-lg-0 wow fadeIn" data-wow-delay="0.1s" style="min-height: 500px;">
+                <div class="">
+                    
+                    <img class=" rounded-circle rounded-bottom rounded-end"
+                        src="{{ asset('assets/images/logo/blacklogo.png') }}" 
+                        style="object-fit: cover; width: 378px" alt="Sobre nós">
                 </div>
             </div>
             <div class="col-lg-7">
                 <div class="mb-4 wow fadeIn" data-wow-delay="0.2s">
-                    <h5 class="section-title">Sobre Nós</h5>
-                    <h1 class="display-6 mb-0">Facilitando o Aluguel de Casas com Praticidade</h1>
+                    <h5 class="section-title text-dark">Sobre Nós</h5>
+                    <h1 class="display-6 mb-0 text-dark">Facilitando o Aluguel de Imóveis com Praticidade</h1>
                 </div>
-                <p class="mb-4 wow fadeIn" data-wow-delay="0.3s">
+                <p class="mb-4 wow fadeIn text-dark" data-wow-delay="0.3s">
                     Somos uma empresa dedicada a conectar proprietários e inquilinos de forma simples e segura.
                     Aqui, os donos de casas podem cadastrar suas casas para aluguel, enquanto os interessados
                     conseguem buscar a moradia ideal de forma rápida e eficiente.
                 </p>
-                <div class="row">
+                <div class="row d-none d-md-flex">
                     <div id="owners" style="height: 5px" class="col-sm-6 wow fadeIn" data-wow-delay="0.4s">
                         <div class="bg-light rounded p-4">
                             <i class="fas fa-home fa-2x text-white"></i>
@@ -180,7 +178,7 @@
                             </p>
                         </div>
                     </div>
-                    <div id="tenants" style="height: 5px" class="col-sm-6 wow fadeIn mb-5" data-wow-delay="0.5s">
+                    <div id="tenants" style="height: 5px" class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
                         <div class="bg-light rounded p-4">
                             <i class="fas fa-search fa-2x text-white"></i>
                             <h4>Busca por Casas</h4>
@@ -198,8 +196,8 @@
 
 
     <!-- Fatos Início -->
-    <div id="fatos" class="container-fluid bg-dark facts p-5 mt-5 " >
-        <div class="row gx-5 gy-4 py-5 mt-5">
+    <div id="fatos" class="container-fluid bg-dark mt-5 ">
+        <div class="row  gy-4 py-5 mt-5">
             <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.1s">
                 <div class="d-flex">
                     <div class="rounded-circle d-flex align-items-center justify-content-center mb-3"
@@ -258,14 +256,15 @@
             <div class="col-lg-12">
                 <div class="mb-4 wow fadeIn" data-wow-delay="0.2s">
                     <h5 class="section-title">Nossa Missão</h5>
-                    <h1 class="display-6 mb-0">Facilitar o sonho de se conseguir um doce lar atendendo sempre as suas necessidades, desejos e expectativas.</h1>
+                    <h1 class="display-6 mb-0">Facilitar o sonho de se conseguir um doce lar atendendo sempre as suas
+                        necessidades, desejos e expectativas.</h1>
                 </div>
                 <p class=" wow fadeIn" data-wow-delay="0.3s">
-                    Este projeto é referente a uma plataforma web de intermediação imobiliária, 
-                    que conecta os proprietários de imóveis a potenciais compradores e arrendatários, 
-                    oferecendo uma experiência rápida, segura e transparente. 
-                    A proposta busca profissionalizar o sector frente à concorrência informal 
-                    representada pelos intermediários informais, entregando um serviço confiável, 
+                    Este projeto é referente a uma plataforma web de intermediação imobiliária,
+                    que conecta os proprietários de imóveis a potenciais compradores e arrendatários,
+                    oferecendo uma experiência rápida, segura e transparente.
+                    A proposta busca profissionalizar o sector frente à concorrência informal
+                    representada pelos intermediários informais, entregando um serviço confiável,
                     com atendimento personalizado e tecnologia de ponta.
                 </p>
             </div>
@@ -274,10 +273,10 @@
     <!-- mission End -->
 
     <!-- Team Start -->
-    <div id="team" class="container-fluid p-5">
+    <div id="team" class="container-fluid p-5 bg-white">
         <div class="mb-5 text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px; margin: auto;">
-            <h5 class="section-title">Nossa Equipe</h5>
-            <h1 class="display-6 mb-0">Pessoas que Transformam Espaços em Experiências</h1>
+            <h5 class="section-title text-dark">Nossa Equipe</h5>
+            <h1 class="display-6 mb-0 text-dark">Pessoas que Transformam Espaços em Experiências</h1>
         </div>
         <div class="row g-5 mt-4">
             <div class="col-lg-4 col-md-6 wow fadeIn" data-wow-delay="0.1s">
@@ -286,19 +285,20 @@
                         <img class="img-fluid w-100" src="img/team-1.jpg" alt="">
                         <div class="team-overlay">
                             <div class="d-flex align-items-center justify-content-start">
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i
+                                <a class="btn btn-white btn-square rounded-circle mx-1" href="#"><i
                                         class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i
+                                <a class="btn btn-white btn-square rounded-circle mx-1" href="#"><i
                                         class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i
+                                <a class="btn btn-white btn-square rounded-circle mx-1" href="#"><i
                                         class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="position-absolute start-0 bottom-0 d-flex flex-column justify-content-center w-100 rounded-bottom text-center"
                         style="height: 100px; background: rgba(34, 36, 41, .9);">
-                        <h5 class="text-light">Joana Silva</h5>
-                        <p class="small text-uppercase text-secondary m-0" style="letter-spacing: 3px;">Especialista
+                        <h5 class="text-white">Joana Silva</h5>
+                        <p class="small text-uppercase text-secondary m-0 text-white" style="letter-spacing: 3px;">
+                            Especialista
                             em Locação Sustentável</p>
                     </div>
                 </div>
@@ -309,19 +309,20 @@
                         <img class="img-fluid w-100" src="img/team-2.jpg" alt="">
                         <div class="team-overlay">
                             <div class="d-flex align-items-center justify-content-start">
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i
+                                <a class="btn btn-white btn-square rounded-circle mx-1" href="#"><i
                                         class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i
+                                <a class="btn btn-white btn-square rounded-circle mx-1" href="#"><i
                                         class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i
+                                <a class="btn btn-white btn-square rounded-circle mx-1" href="#"><i
                                         class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="position-absolute start-0 bottom-0 d-flex flex-column justify-content-center w-100 rounded-bottom text-center"
                         style="height: 100px; background: rgba(34, 36, 41, .9);">
-                        <h5 class="text-light">Carlos Mendes</h5>
-                        <p class="small text-uppercase text-secondary m-0" style="letter-spacing: 3px;">Consultor de
+                        <h5 class="text-white">Carlos Mendes</h5>
+                        <p class="small text-uppercase text-secondary m-0 text-white" style="letter-spacing: 3px;">
+                            Consultor de
                             Bem-Estar & Espaços Verdes</p>
                     </div>
                 </div>
@@ -332,19 +333,20 @@
                         <img class="img-fluid w-100" src="img/team-3.jpg" alt="">
                         <div class="team-overlay">
                             <div class="d-flex align-items-center justify-content-start">
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i
+                                <a class="btn btn-white btn-square rounded-circle mx-1" href="#"><i
                                         class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i
+                                <a class="btn btn-white btn-square rounded-circle mx-1" href="#"><i
                                         class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i
+                                <a class="btn btn-white btn-square rounded-circle mx-1" href="#"><i
                                         class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="position-absolute start-0 bottom-0 d-flex flex-column justify-content-center w-100 rounded-bottom text-center"
                         style="height: 100px; background: rgba(34, 36, 41, .9);">
-                        <h5 class="text-light">Mariana Costa</h5>
-                        <p class="small text-uppercase text-secondary m-0" style="letter-spacing: 3px;">Coordenadora
+                        <h5 class="text-white">Mariana Costa</h5>
+                        <p class="small text-uppercase text-secondary m-0 text-white" style="letter-spacing: 3px;">
+                            Coordenadora
                             de Experiência do Hóspede</p>
                     </div>
                 </div>
@@ -354,12 +356,12 @@
     <!-- Team End -->
 
     <!-- Testimonial Start -->
-    <div class="container-fluid p-0 my-5">
+    <div class="container-fluid p-0 bg-white">
         <div class="row g-0">
-            <div class="col-lg-12 bg-dark p-5 overflow-hidden wow fadeIn" data-wow-delay="0.3s"
+            <div class="col-lg-12 bg-white p-5 overflow-hidden wow fadeIn" data-wow-delay="0.3s"
                 style="border-bottom-right-radius: 50%;">
                 <div class="mb-5">
-                    <h5 class="section-title">Depoimentos</h5>
+                    <h5 class="section-title text-dark">Depoimentos</h5>
                     <h1 class="display-3 text-secondary mb-0">O que nossos clientes dizem</h1>
                 </div>
                 <div class="owl-carousel testimonial-carousel">
@@ -489,7 +491,7 @@
         <div class="row gx-5">
             <div class="col-lg-8">
                 <div class="py-lg-4 text-md-start">
-                    <p class="text-light mb-0">&copy; 2025 <a href="#">@include('inc.namewebsite')</a>, Todos
+                    <p class="text-light mb-0">&copy; 2025 <a href="#" class="text-white">@include('inc.namewebsitewhite')</a>, Todos
                         direitos reservados.
                     </p>
                 </div>
