@@ -1,11 +1,12 @@
 @section('title', 'Perfil')
-<div class="content">
+<div class="content" style="background: {{ $darkmode ? '' : 'rgba(200,200,200,50)' }};">
 
     @include('inc.header')
 
 
     <div class="container-fluid pt-4 px-4">
-        <div class="row bg-secondary rounded align-items-center justify-content-center mx-0" style="min-height: 65vh">
+        <div class="row {{ auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} rounded align-items-center justify-content-center mx-0"
+            style="min-height: 65vh">
 
             <div class="row column1 py-4">
                 <div class="col-md-12">
@@ -19,28 +20,31 @@
                                         <div class="d-flex align-items-center">
                                             <div class="position-relative" style="width: 40px; height: 40px;">
                                                 @if (auth()->user()->photo)
-                                                <a href="{{ asset('storage/' . auth()->user()->photo) }}">
-                                                    <img class=" rounded-circle" src="{{ asset('storage/' . auth()->user()->photo) }}" alt="photo de perfil"
-                                                    style="width: 40px; height: 40px;">
-                                                </a>
+                                                    <a href="{{ asset('storage/' . auth()->user()->photo) }}">
+                                                        <img class=" rounded-circle"
+                                                            src="{{ asset('storage/' . auth()->user()->photo) }}"
+                                                            alt="photo de perfil" style="width: 40px; height: 40px;">
+                                                    </a>
                                                 @else
                                                     <div class="border d-flex justify-content-center align-items-center rounded-circle bg-secondary"
                                                         style="width: 40px; height: 40px;">
                                                         <i class="fa fa-images text-white"></i>
                                                     </div>
                                                 @endif
-                                        
+
                                                 {{-- Livewire sobreposto e um pouco mais baixo --}}
-                                                <div class="position-absolute" style="bottom: -10px; right: -6px;">
+                                                <div class="position-absolute " style="bottom: -10px; right: -6px;">
                                                     @livewire('user.component.set-photo')
                                                 </div>
                                             </div>
-                                        
-                                            <h3 class="mx-2 mb-0">{{ ucwords(auth()->user()->first_name) }} {{ ucwords(auth()->user()->last_name) }}</h3>
+
+                                            <h3 class="mx-2 mb-0 {{ auth()->user()->getDarkMode ? '' : 'text-dark' }}">
+                                                {{ ucwords(auth()->user()->first_name) }}
+                                                {{ ucwords(auth()->user()->last_name) }}</h3>
                                         </div>
-                                        
-                                        
-                                        
+
+
+
                                     </div>
 
                                 </div>
@@ -51,24 +55,25 @@
                                     <div class="tabbar">
                                         <nav>
                                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                                <a class="nav-item nav-link {{ $tab == 'profile_section' ? 'active' : '' }}"
-                                                    wire:click="set_tab('profile_section')" id="nav-contact-tab"
-                                                    data-toggle="tab" href="#profile_section" role="tab"
+                                                <a class="nav-item nav-link {{ $tab == 'perfil' ? 'active' : '' }} "
+                                                    wire:click="set_tab('perfil')" id="nav-contact-tab"
+                                                    data-toggle="tab" href="#perfil" role="tab"
                                                     aria-selected="false">Perfil</a>
-                                                <a class="nav-item nav-link {{ $tab == 'recent_activity' ? 'active' : '' }}"
-                                                    wire:click="set_tab('recent_activity')" id="nav-home-tab"
-                                                    data-toggle="tab" href="#recent_activity" role="tab"
+                                                <a class="nav-item nav-link {{ $tab == 'actualizar-dados' ? 'active' : '' }} "
+                                                    wire:click="set_tab('actualizar-dados')" id="nav-home-tab"
+                                                    data-toggle="tab" href="#actualizar-dados" role="tab"
                                                     aria-selected="true">Actualizar dados</a>
-                                                <a class="nav-item nav-link {{ $tab == 'project_worked' ? 'active' : '' }}"
-                                                    wire:click="set_tab('project_worked')" id="nav-profile-tab"
-                                                    data-toggle="tab" href="#project_worked" role="tab"
-                                                    aria-selected="false">Alterar Senha</a>
+                                                <a class="nav-item nav-link {{ $tab == 'palavra-passe' ? 'active' : '' }} "
+                                                    wire:click="set_tab('palavra-passe')" id="nav-profile-tab"
+                                                    data-toggle="tab" href="#palavra-passe" role="tab"
+                                                    aria-selected="false">Alterar Palavra-Passe</a>
                                             </div>
                                         </nav>
                                         <div class="tab-content" id="nav-tabContent">
-                                            <div class="tab-pane fade {{ $tab == 'profile_section' ? 'show active' : '' }} "
-                                                id="profile_section" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                                <h3 class="my-4">Dados Pessoais</h3>
+                                            <div class="tab-pane fade {{ $tab == 'perfil' ? 'show active' : '' }} "
+                                                id="perfil" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                                <h3 class="my-4 {{ auth()->user()->getDarkMode ? '' : 'text-dark' }}">
+                                                    Dados Pessoais</h3>
 
                                                 <ul class="list-unstyled" style="font-size: 15px">
                                                     <li class="my-3"><i class="fa fa-tag"></i> Gênero:
@@ -82,7 +87,7 @@
                                                         {{ $user->nif ?? 'n/d' }}</li>
                                                     <li class="my-3"><i class="fa fa-envelope"></i> Email:
                                                         {{ ucwords($user->email) }}</li>
-                                                    <li class="my-3"><i class="fa fa-phone"></i> Telefone:
+                                                    <li class="my-3"><i class="fa fa-phone-alt"></i> Telefone:
                                                         {{ ucwords($user->phone) }}</li>
                                                     <li class="my-3"><i class="fa fa-map"></i> Morada:
                                                         @if ($user->address_id)
@@ -96,15 +101,21 @@
 
                                                 </ul>
                                             </div>
-                                            <div class="tab-pane fade {{ $tab == 'recent_activity' ? 'show active' : '' }} "
-                                                id="recent_activity" role="tabpanel" aria-labelledby="nav-home-tab">
+                                            <div class="tab-pane fade {{ $tab == 'actualizar-dados' ? 'show active' : '' }} "
+                                                id="actualizar-dados" role="tabpanel" aria-labelledby="nav-home-tab">
                                                 <div class="msg_list_main">
-                                                    <h3 class="my-4">Actualizar dados</h3>
+                                                    <h3
+                                                        class="my-4 {{ auth()->user()->getDarkMode ? '' : 'text-dark' }}">
+                                                        Actualizar dados</h3>
                                                     <hr>
                                                     <div class="row g-3">
                                                         <div class="col-md-6">
                                                             <label for="first_name">Nome</label>
-                                                            <input class="form-control" type="text"
+                                                            <input
+                                                                {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
+                                                        color: black;
+                                                        background: transparent'" }}
+                                                                class="form-control" type="text"
                                                                 wire:model='first_name' name="first_name"
                                                                 id="first_name" />
                                                             @error('first_name')
@@ -114,7 +125,11 @@
 
                                                         <div class="col-md-6">
                                                             <label for="last_name">Sobrenome</label>
-                                                            <input class="form-control" type="text"
+                                                            <input
+                                                                {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
+                                                        color: black;
+                                                        background: transparent'" }}
+                                                                class="form-control" type="text"
                                                                 wire:model='last_name' name="last_name"
                                                                 id="last_name" />
                                                             @error('last_name')
@@ -124,7 +139,11 @@
 
                                                         <div class="col-md-6">
                                                             <label for="gender">Gênero</label>
-                                                            <select class="form-select" wire:model='gender'
+                                                            <select
+                                                            {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
+                                                        color: black;
+                                                        background: transparent'" }}
+                                                            class="form-select" wire:model='gender'
                                                                 name="gender" id="gender">
                                                                 <option value="">Selecione</option>
                                                                 <option value="Masculino">Masculino</option>
@@ -136,7 +155,11 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label for="birth_date">Nascimento</label>
-                                                            <input class="form-control" type="date"
+                                                            <input
+                                                                {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
+                                                        color: black;
+                                                        background: transparent'" }}
+                                                                class="form-control" type="date"
                                                                 wire:model='birth_date' name="birth_date"
                                                                 id="birth_date" />
                                                             @error('birth_date')
@@ -146,7 +169,11 @@
 
                                                         <div class="col-md-6">
                                                             <label for="email">E-mail</label>
-                                                            <input type="email" wire:model='email'
+                                                            <input
+                                                                {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
+                                                        color: black;
+                                                        background: transparent'" }}
+                                                                type="email" wire:model='email'
                                                                 class="form-control" name="email" id="email" />
                                                             @error('email')
                                                                 <span class="text-danger mt-2">{{ $message }}</span>
@@ -155,7 +182,11 @@
 
                                                         <div class="col-md-6">
                                                             <label for="phone">Telefone</label>
-                                                            <input type="number" wire:model='phone'
+                                                            <input
+                                                                {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
+                                                        color: black;
+                                                        background: transparent'" }}
+                                                                type="number" wire:model='phone'
                                                                 class="form-control" name="phone" id="phone" />
                                                             @error('phone')
                                                                 <span class="text-danger mt-2">{{ $message }}</span>
@@ -164,8 +195,12 @@
 
                                                         <div class="col-md-6">
                                                             <label class=" nif">NIF/BI</label>
-                                                            <input class="form-control" type="text"
-                                                                wire:model='nif' name="nif" id="nif" />
+                                                            <input
+                                                                {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
+                                                        color: black;
+                                                        background: transparent'" }}
+                                                                class="form-control" type="text" wire:model='nif'
+                                                                name="nif" id="nif" />
                                                             @error('nif')
                                                                 <span class="text-danger mt-2">{{ $message }}</span>
                                                             @enderror
@@ -173,7 +208,11 @@
 
                                                         <div class="col-md-6">
                                                             <label class=" province_id">Província</label>
-                                                            <select class="form-select" style="width: 100%"
+                                                            <select
+                                                            {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
+                                                        color: black;
+                                                        background: transparent'" }}
+                                                            class="form-select" style="width: 100%"
                                                                 wire:change='get_local' wire:model='province_id'
                                                                 name="province_id" id="province_id">
                                                                 <option value="">Selecione</option>
@@ -190,7 +229,11 @@
 
                                                         <div class="col-md-6">
                                                             <label class=" municipality_id">Município</label>
-                                                            <select class="form-select" wire:change='get_local'
+                                                            <select
+                                                            {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
+                                                        color: black;
+                                                        background: transparent'" }}
+                                                            class="form-select" wire:change='get_local'
                                                                 wire:model='municipality_id' name="municipality_id"
                                                                 id="municipality_id">
                                                                 <option value="">Selecione</option>
@@ -207,7 +250,11 @@
 
                                                         <div class="col-md-6">
                                                             <label class=" address_id">Morada</label>
-                                                            <select class="form-select" wire:model='address_id'
+                                                            <select
+                                                            {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
+                                                        color: black;
+                                                        background: transparent'" }}
+                                                            class="form-select" wire:model='address_id'
                                                                 name="address_id" id="address_id">
                                                                 <option value="">Selecione</option>
                                                                 @foreach ($addresses as $item)
@@ -235,15 +282,19 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade {{ $tab == 'project_worked' ? 'show active' : '' }} "
-                                                id="project_worked" role="tabpanel"
+                                            <div class="tab-pane fade {{ $tab == 'palavra-passe' ? 'show active' : '' }} "
+                                                id="palavra-passe" role="tabpanel"
                                                 aria-labelledby="nav-profile-tab">
-                                                <h3 class="my-4">Alterar palavra-passe</h3>
+                                                <h3 class="my-4 {{ auth()->user()->getDarkMode ? '' : 'text-dark' }}">Alterar Palavra-Passe</h3>
                                                 <hr>
                                                 <div class="row g-3 col-md-6">
                                                     <div class="col-md-7">
                                                         <label class="oldpassword">Antiga</label>
-                                                        <input wire:change='check_password' class="form-control"
+                                                        <input
+                                                        {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
+                                                        color: black;
+                                                        background: transparent'" }}
+                                                            wire:change='check_password' class="form-control"
                                                             type="password" wire:model='oldpassword'
                                                             name="oldpassword" id="oldpassword" />
                                                         @error('oldpassword')
@@ -252,7 +303,11 @@
                                                     </div>
                                                     <div class="col-md-7">
                                                         <label class="newpassword">Nova</label>
-                                                        <input wire:change='check_password' class="form-control"
+                                                        <input
+                                                            {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
+                                                        color: black;
+                                                        background: transparent'" }}
+                                                            wire:change='check_password' class="form-control"
                                                             type="password" wire:model='newpassword'
                                                             name="newpassword" id="newpassword" />
                                                         @error('newpassword')
@@ -261,7 +316,11 @@
                                                     </div>
                                                     <div class="col-md-7">
                                                         <label class="confirmpassword">Confirmar</label>
-                                                        <input wire:change='check_password' class="form-control"
+                                                        <input
+                                                            {{ auth()->user()->getDarkMode ? '' : "style='border: 0.5px solid #222; 
+                                                        color: black;
+                                                        background: transparent'" }}
+                                                            wire:change='check_password' class="form-control"
                                                             type="password" wire:model='confirmpassword'
                                                             name="confirmpassword" id="confirmpassword" />
                                                         @error('confirmpassword')
@@ -300,14 +359,14 @@
 @push('scripts')
     <script>
         /*   $(document).ready(function() {
-                                    $('#province_id').select2({
-                                        theme: 'bootstrap-5',
-                                        width: "100%"
-                                    });
-                                    $('#province_id').on('change', function(e) {
-                                        @this.set('province_id', $('#province_id').select2("val"));
-                                        @this.get_local();
-                                    });
-                                });*/
+                                        $('#province_id').select2({
+                                            theme: 'bootstrap-5',
+                                            width: "100%"
+                                        });
+                                        $('#province_id').on('change', function(e) {
+                                            @this.set('province_id', $('#province_id').select2("val"));
+                                            @this.get_local();
+                                        });
+                                    });*/
     </script>
 @endpush

@@ -1,5 +1,5 @@
 <!-- Sidebar Start -->
-<div wire:poll.visible class="sidebar {{auth()->user()->getDarkMode ? '' : 'bg-white' }} pe-4 pb-3">
+<div {{ $route == 'user.config' ? 'wire:poll.visible' : ''}}  class="sidebar {{auth()->user()->getDarkMode ? '' : 'bg-white' }} pe-4 pb-3">
     <nav class="navbar {{auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} navbar-dark">
         <a href="/" class="navbar-brand mx-4 mb-3">
             <h3 class="{{auth()->user()->getDarkMode ? 'text-primary' : 'text-dark' }}">@include('inc.namewebsite')</h3>

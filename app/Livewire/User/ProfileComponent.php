@@ -47,7 +47,7 @@ class ProfileComponent extends Component
 
     public function mount()
     {
-        $this->tab = "profile_section";
+        $this->tab = "perfil";
         $this->provinces = Province::orderBy("description", "asc")->get();
         $this->user = Auth::user();
         $this->first_name = $this->user->first_name;
@@ -72,7 +72,9 @@ class ProfileComponent extends Component
 
     public function render()
     {
-        return view('livewire.user.profile-component')
+        return view('livewire.user.profile-component', [
+            "darkmode" => auth()->user()->getDarkMode ?? ''
+        ])
         ->layout("components.layouts.app");
     }
 
