@@ -1,10 +1,10 @@
 <div wire:ignore.self class="modal fade" id="add" tabindex="-1" aria-labelledby="itemModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content bg-secondary rounded p-4 p-sm-5">
+        <div class="modal-content {{ auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }}  rounded p-4 p-sm-5">
 
             <div class="modal-header d-flex align-items-center justify-content-between border-0">
                 <h3 class="text-primary m-0">Registrar</h3>
-                <h3 class="m-0 ps-2">Imóvel</h3>
+                <h3 class="m-0 ps-2 {{ auth()->user()->getDarkMode ? '' : 'text-dark' }} ">Imóvel</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
 
@@ -14,7 +14,9 @@
                         <!-- Título -->
                         <div class="col-md-6 mb-3">
                             <label for="title" class="form-label">Título</label>
-                            <input type="text" wire:model="title" id="title" class="form-control"
+                            <input 
+                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
+                            type="text" wire:model="title" id="title" class="form-control"
                                 placeholder="Título">
                             @error('title')
                                 <span class="text-danger">{{ $message }}</span>
@@ -24,7 +26,9 @@
                         <!-- Descrição -->
                         <div class="col-md-6 mb-3">
                             <label for="description" class="form-label">Descrição</label>
-                            <textarea wire:model="description" id="description" class="form-control" placeholder="Descrição"></textarea>
+                            <textarea
+                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
+                            wire:model="description" id="description" class="form-control" placeholder="Descrição"></textarea>
                             @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -33,7 +37,9 @@
                         <!-- Preço -->
                         <div class="col-md-6 mb-3">
                             <label for="price" class="form-label">Preço</label>
-                            <input type="text" wire:model="price" id="price" class="form-control"
+                            <input 
+                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
+                            type="text" wire:model="price" id="price" class="form-control"
                                 placeholder="Preço" step="0.01">
                             @error('price')
                                 <span class="text-danger">{{ $message }}</span>
@@ -48,7 +54,9 @@
                         <!-- Proprietário -->
                         <div class="col-md-6 mb-3">
                             <label for="owner" class="form-label">Proprietário</label>
-                            <select wire:model="owner" id="owner" class="form-select">
+                            <select 
+                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
+                            wire:model="owner" id="owner" class="form-select">
                                 <option value="">Selecione</option>
                                 @foreach ($users as $user)
                                     <option value="{{ $user->id }}">{{ $user->first_name }} {{ $user->last_name }}
@@ -63,7 +71,9 @@
                         <!-- Província -->
                         <div class="col-md-6 mb-3">
                             <label for="province_id" class="form-label">Província</label>
-                            <select wire:change='getLocal' wire:model="province_id" id="province_id"
+                            <select 
+                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
+                            wire:change='getLocal' wire:model="province_id" id="province_id"
                                 class="form-select">
                                 <option value="">Selecione</option>
                                 @foreach ($provinces as $province)
@@ -78,7 +88,9 @@
                         <!-- Município -->
                         <div class="col-md-6 mb-3">
                             <label for="municipality_id" class="form-label">Município</label>
-                            <select wire:change='getLocal' wire:model="municipality_id" id="municipality_id"
+                            <select 
+                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
+                            wire:change='getLocal' wire:model="municipality_id" id="municipality_id"
                                 class="form-select">
                                 <option value="">Selecione</option>
                                 @foreach ($municipalities as $municipality)
@@ -93,7 +105,9 @@
                         <!-- Endereço -->
                         <div class="col-md-6 mb-3">
                             <label for="address_id" class="form-label">Endereço</label>
-                            <select wire:model="address_id" id="address_id" class="form-select">
+                            <select 
+                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
+                            wire:model="address_id" id="address_id" class="form-select">
                                 <option value="">Selecione</option>
                                 @foreach ($addresses as $address)
                                     <option value="{{ $address->id }}">{{ $address->description }}</option>
@@ -116,7 +130,9 @@
                         <!-- Campo de Foto com wire:loading -->
                         <div class="col-12 mb-3">
                             <label for="photo" class="form-label">Foto</label>
-                            <input type="file" class="form-control" id="photo" wire:model="photo">
+                            <input 
+                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
+                            type="file" class="form-control" id="photo" wire:model="photo">
 
                             <!-- Barra de progresso simples com wire:loading -->
                             <div class="my-2 w-100" wire:loading wire:target="photo">

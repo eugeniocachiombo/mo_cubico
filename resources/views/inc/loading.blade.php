@@ -44,16 +44,23 @@
     }
 </style>
 <!-- Spinner Start -->
-<div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+
+@php
+    $darkM = auth()->user()->getDarkMode ?? false;
+    $logo = $darkM ? 'redlogo' : 'blacklogo'; 
+@endphp
+<div id="spinner" class="show position-fixed translate-middle 
+w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+style="background: {{ $darkM ? '' : 'white' }};">
     {{--<div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
         <span class="sr-only">Loading...</span>
     </div>--}}
     
-    <div style="background: #000; min-width:inherit; min-height:100vh"
+    <div style="background: {{ $darkM ? '' : 'white' }}; min-width:inherit; min-height:100vh"
         class="container-fluid d-flex justify-content-center align-items-center">
         <div class="image-container">
             <img class="image-fluid" style="width: 100px"
-                src="{{ asset('assets/images/logo/redlogo.png') }}" alt="#" />
+                src="{{ asset('assets/images/logo/'.$logo.'.png') }}" alt="#" />
         </div>
     </div>
     

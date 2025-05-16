@@ -45,10 +45,14 @@
     }
 </style>
 
-<div style="background: #000; min-width:inherit; min-height:100vh"
+@php
+    $darkM = auth()->user()->getDarkMode ?? false;
+    $logo = $darkM ? 'redlogo' : 'blacklogo'; 
+@endphp
+<div style="background: {{ $darkM ? '' : 'white' }}; min-width:inherit; min-height:100vh"
     class="container-fluid d-flex justify-content-center align-items-center">
     <div class="image-container">
         <img class="image-fluid" style="width: 100px"
-            src="{{ asset('assets/images/logo/redlogo.png') }}" alt="#" />
+            src="{{ asset('assets/images/logo/'.$logo.'.png') }}" alt="#" />
     </div>
 </div>
