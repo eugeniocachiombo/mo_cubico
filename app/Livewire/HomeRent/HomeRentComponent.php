@@ -28,10 +28,9 @@ class HomeRentComponent extends Component
     public $responsible;
     public $access_id;
     public $province_id;
-    public $municipality_id;
-    public $address_id;
-    public $photoUrl;
+    public $municipality_id = null;
     public $addressDesc;
+    public $photoUrl;
     public $municipaltyDesc;
     public $municipalities = [];
     public $addresses = [];
@@ -44,7 +43,7 @@ class HomeRentComponent extends Component
         'owner' => 'required',
         'province_id' => 'required|exists:provinces,id',
         'municipality_id' => 'required|exists:municipalities,id',
-        'address_id' => 'required|exists:addresses,id',
+        'addressDesc' => 'required|exists:addresses,description',
     ];
 
     protected $messages = [
@@ -68,8 +67,8 @@ class HomeRentComponent extends Component
         'municipality_id.required' => 'O campo município é obrigatório.',
         'municipality_id.exists' => 'O município selecionado não é válido.',
 
-        'address_id.required' => 'O campo endereço é obrigatório.',
-        'address_id.exists' => 'O endereço selecionado não é válido.',
+        'addressDesc.required' => 'O campo endereço é obrigatório.',
+        'addressDesc.exists' => 'O endereço não existe, por favor clique no ícone (+).',
     ];
 
     public function render()
@@ -80,7 +79,7 @@ class HomeRentComponent extends Component
             'accesses' => Access::all(),
             'provinces' => Province::orderBy("description", "asc")->get(),
             'homes' => $this->getHomes(),
-            "darkmode" => auth()->user()->getDarkMode ?? ''
+            "darkmode" => auth()->user()->getDarkMode ?? '',
         ])
             ->layout("components.layouts.app");
     }
@@ -126,7 +125,7 @@ class HomeRentComponent extends Component
 
     public function save()
     {
-        $this->validate();
+        $this->validate($this->rules, $this->messages);
         try {
 
             DB::beginTransaction();
@@ -139,6 +138,10 @@ class HomeRentComponent extends Component
             $priceRmPoint = str_replace(".", "", $this->price);
             $priceFinal = str_replace(",", ".", $priceRmPoint);
 
+            $address = Address::where("municipality_id", $this->municipality_id)
+                ->where("province_id", $this->province_id)
+                ->where("description", $this->addressDesc)->first();
+
             Home::create([
                 'title' => $this->title,
                 'description' => $this->description,
@@ -146,7 +149,7 @@ class HomeRentComponent extends Component
                 'photo' => $photoPath,
                 'owner' => $this->owner,
                 'responsible' => Auth::user()->id,
-                'address_id' => $this->address_id,
+                'address_id' => $address->id,
                 'province_id' => $this->province_id,
                 'municipality_id' => $this->municipality_id,
                 'status' => 'pendente',
@@ -177,20 +180,17 @@ class HomeRentComponent extends Component
     {
         $this->edit = true;
         $home = Home::find($home_id);
+        $this->home_id = $home->id;
         $this->title = $home->title;
         $this->description = $home->description;
         $this->price = number_format($home->price, 2, ",", ".");
         $this->owner = $home->owner;
         $this->responsible = Auth::user()->id;
         $this->province_id = $home->province_id;
-
-        $this->municipalities = Municipality::where("province_id", $this->province_id)
-            ->orderBy("description", "asc")->get();
+       $this->getLocal();
         $this->municipality_id = $home->municipality_id;
-        $this->addresses = Address::where("municipality_id", $this->municipality_id)
-            ->where("province_id", $this->province_id)
-            ->orderBy("description", "asc")->get();
-        $this->address_id = $home->address_id;
+        $this->addressDesc = $home->getAddress->description;
+
     }
 
     public function update()
@@ -208,18 +208,22 @@ class HomeRentComponent extends Component
             $priceRmPoint = str_replace(".", "", $this->price);
             $priceFinal = str_replace(",", ".", $priceRmPoint);
 
-            Home::where("id", $this->home_id)->update([
-                'title' => $this->title,
-                'description' => $this->description,
-                'price' => $priceFinal,
-                'photo' => $photoPath,
-                'owner' => $this->owner,
-                'responsible' => Auth::user()->id,
-                'address_id' => $this->address_id,
-                'province_id' => $this->province_id,
-                'municipality_id' => $this->municipality_id,
-                'status' => 'pendente',
-            ]);
+            $address = Address::where("municipality_id", $this->municipality_id)
+                ->where("province_id", $this->province_id)
+                ->where("description", $this->addressDesc)->first();
+
+            $home = Home::find($this->home_id);
+            $home->title = $this->title;
+            $home->description = $this->description;
+            $home->price = $priceFinal;
+            $home->photo = $photoPath;
+            $home->owner = $this->owner;
+            $home->responsible = Auth::user()->id;
+            $home->address_id = $address->id;
+            $home->province_id = $this->province_id;
+            $home->municipality_id = $this->municipality_id;
+            $home->status = 'pendente';
+            $home->save();
 
             DB::commit();
             $this->dispatch('alerta', [
@@ -292,41 +296,12 @@ class HomeRentComponent extends Component
             'addressDesc.required' => 'O campo endereço é obrigatório.',
         ]);
 
-        $address = Address::create([
+        Address::create([
             'description' => $this->addressDesc,
             "province_id" => $this->province_id,
             "municipality_id" => $this->municipality_id,
         ]);
 
-        $this->addresses = Address::where("municipality_id", $this->municipality_id)
-            ->where("province_id", $this->province_id)
-            ->orderBy("description", "asc")->get();
-        $this->address_id = $address->id;
-        $this->addressDesc = null;
-        $this->dispatch('closemodalAddresses');
-    }
-
-    public function createMunicipality()
-    {
-        $this->validate([
-            'municipaltyDesc' => 'required|string|max:255',
-            'province_id' => 'required|exists:provinces,id',
-        ], [
-            'province_id.required' => 'O campo província é obrigatório.',
-            'province_id.exists' => 'A província selecionada não é válida.',
-            'municipaltyDesc.required' => 'O campo é obrigatório.',
-        ]);
-
-        $municipality = Municipality::create([
-            'description' => $this->municipaltyDesc,
-            "province_id" => $this->province_id,
-        ]);
-
-        $this->municipalities = Municipality::where("province_id", $this->province_id)
-            ->orderBy("description", "asc")->get();
-        $this->municipality_id = $municipality->id;
-        $this->municipaltyDesc = null;
-        $this->dispatch('closemodalMunicipality');
     }
 
     public function clearFilds()
@@ -337,10 +312,10 @@ class HomeRentComponent extends Component
         $this->price = null;
         $this->photo = null;
         $this->owner = null;
-        $this->address_id = null;
+        $this->addressDesc = null;
         $this->province_id = null;
         $this->municipality_id = null;
-        $this->address_id = null;
+        $this->addressDesc = null;
     }
 
 }

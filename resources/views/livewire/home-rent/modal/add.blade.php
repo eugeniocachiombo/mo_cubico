@@ -11,35 +11,35 @@
             <div class="modal-body">
                 <form>
                     <div class="row">
-                        <!-- Título -->
+
                         <div class="col-md-6 mb-3">
                             <label for="title" class="form-label">Título</label>
-                            <input 
-                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
-                            type="text" wire:model="title" id="title" class="form-control"
+                            <input
+                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
+                                type="text" wire:model="title" id="title" class="form-control"
                                 placeholder="Título">
                             @error('title')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
-                        <!-- Descrição -->
+
                         <div class="col-md-6 mb-3">
                             <label for="description" class="form-label">Descrição</label>
                             <textarea
-                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
-                            wire:model="description" id="description" class="form-control" placeholder="Descrição"></textarea>
+                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
+                                wire:model="description" id="description" class="form-control" placeholder="Descrição"></textarea>
                             @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
-                        <!-- Preço -->
+
                         <div class="col-md-6 mb-3">
                             <label for="price" class="form-label">Preço</label>
-                            <input 
-                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
-                            type="text" wire:model="price" id="price" class="form-control"
+                            <input
+                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
+                                type="text" wire:model="price" id="price" class="form-control"
                                 placeholder="Preço" step="0.01">
                             @error('price')
                                 <span class="text-danger">{{ $message }}</span>
@@ -51,12 +51,12 @@
                             </script>
                         </div>
 
-                        <!-- Proprietário -->
+
                         <div class="col-md-6 mb-3">
                             <label for="owner" class="form-label">Proprietário</label>
-                            <select 
-                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
-                            wire:model="owner" id="owner" class="form-select">
+                            <select
+                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background-color: transparent;' }}"
+                                wire:model="owner" id="owner" class="form-select">
                                 <option value="">Selecione</option>
                                 @foreach ($users as $user)
                                     <option value="{{ $user->id }}">{{ $user->first_name }} {{ $user->last_name }}
@@ -68,13 +68,12 @@
                             @enderror
                         </div>
 
-                        <!-- Província -->
+
                         <div class="col-md-6 mb-3">
                             <label for="province_id" class="form-label">Província</label>
-                            <select 
-                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
-                            wire:change='getLocal' wire:model="province_id" id="province_id"
-                                class="form-select">
+                            <select
+                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background-color: transparent;' }}"
+                                wire:change='getLocal' wire:model="province_id" id="province_id" class="form-select">
                                 <option value="">Selecione</option>
                                 @foreach ($provinces as $province)
                                     <option value="{{ $province->id }}">{{ $province->description }}</option>
@@ -85,13 +84,13 @@
                             @enderror
                         </div>
 
-                        <!-- Município -->
+
                         <div class="col-md-6 mb-3">
                             <label for="municipality_id" class="form-label">Município</label>
-                            <select 
-                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
-                            wire:change='getLocal' wire:model="municipality_id" id="municipality_id"
-                                class="form-select">
+                            <select {{ $province_id ? '' : 'disable' }}
+                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background-color: transparent;' }}"
+                                wire:change='getLocal' wire:model="municipality_id" id="municipality_id"
+                                class="form-select {{ $province_id ? '' : 'bg-secondary' }}">
                                 <option value="">Selecione</option>
                                 @foreach ($municipalities as $municipality)
                                     <option value="{{ $municipality->id }}">{{ $municipality->description }}</option>
@@ -102,37 +101,44 @@
                             @enderror
                         </div>
 
-                        <!-- Endereço -->
-                        <div class="col-md-6 mb-3">
-                            <label for="address_id" class="form-label">Endereço</label>
-                            <select 
-                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
-                            wire:model="address_id" id="address_id" class="form-select">
-                                <option value="">Selecione</option>
+
+                        <div class="col-md-6 mb-3 position-relative">
+                            <label for="addressDesc" class="form-label">Morada</label>
+
+                            <input {{ $municipality_id ? '' : 'disabled' }} type="text" list="address_suggestions"
+                                wire:model.live="addressDesc" id="addressDesc"
+                                class="form-control {{ $municipality_id ? '' : 'bg-secondary' }}"
+                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background-color: transparent;' }}"
+                                placeholder="Digite o bairro ou endereço" />
+
+
+                            <datalist id="address_suggestions">
                                 @foreach ($addresses as $address)
-                                    <option value="{{ $address->id }}">{{ $address->description }}</option>
+                                    <option value="{{ $address->description }}">{{ $address->description }}</option>
                                 @endforeach
-                            </select>
-                            @error('address_id')
+                            </datalist>
+
+                            @error('addressDesc')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
 
-                            <!-- Botão para abrir o modal de novo endereço -->
-                            <button type="button" class="btn btn-link p-0 mt-2" data-bs-toggle="modal"
-                                data-bs-target="#addAddressModal">
-                                + Cadastrar novo endereço
-                            </button>
 
-                            @include('livewire.home-rent.modal.address')
+                            @if ($addressDesc && !in_array($addressDesc, $addresses->pluck('description')->toArray()))
+                                <button type="button" class="btn btn-link position-absolute top-0 end-0 mt-4 me-2"
+                                    wire:click='createAddress' title="Adicionar novo endereço">
+                                    <i class="bi bi-plus-circle-fill text-primary fs-5"></i>
+                                </button>
+                            @endif
                         </div>
+
 
 
                         <!-- Campo de Foto com wire:loading -->
                         <div class="col-12 mb-3">
                             <label for="photo" class="form-label">Foto</label>
-                            <input 
-                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
-                            type="file" class="form-control" id="photo" wire:model="photo">
+                            <input
+                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
+                                type="file" class="form-control" id="photo" wire:model="photo">
 
                             <!-- Barra de progresso simples com wire:loading -->
                             <div class="my-2 w-100" wire:loading wire:target="photo">
@@ -166,10 +172,12 @@
 
                         <!-- Botões -->
                         <div class="col-12 text-end">
-                            <button type="button" wire:click.prevent='save' wire:loading.attr="disabled"
-                                wire:target="save" class="btn btn-primary px-4 py-2">
-                                <span wire:loading.remove wire:target="save">Registrar</span>
-                                <span wire:loading wire:target="save">
+                            <button type="button" wire:click.prevent="{{ $edit == true ? 'update' : 'save' }}"
+                                wire:target="{{ $edit == true ? 'update' : 'save' }}"
+                                class="btn btn-primary px-4 py-2">
+                                <span wire:loading.remove
+                                    wire:target="{{ $edit == true ? 'update' : 'save' }}">Registrar</span>
+                                <span wire:loading wire:target="{{ $edit == true ? 'update' : 'save' }}">
                                     <i class="fa fa-spinner fa-spin"></i> Registrar
                                 </span>
                             </button>

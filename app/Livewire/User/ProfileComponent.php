@@ -14,7 +14,7 @@ use Livewire\Component;
 
 class ProfileComponent extends Component
 {
-
+    public $addressDesc;
     public $user, $tab;
     public $first_name, $last_name, $gender,
     $birth_date, $email, $phone;
@@ -63,15 +63,12 @@ class ProfileComponent extends Component
             ->orderBy("description", "asc")
             ->get();
         $this->municipality_id = $this->user->municipality_id;
-        $this->addresses = Address::where("municipality_id", $this->municipality_id)
-            ->where("province_id", $this->province_id)
-            ->orderBy("description", "asc")
-            ->get();
-        $this->address_id = $this->user->address_id;
+        $this->addressDesc = $this->user->getAddress->description;
     }
 
     public function render()
     {
+        $this->get_local();
         return view('livewire.user.profile-component', [
             "darkmode" => auth()->user()->getDarkMode ?? ''
         ])
@@ -92,9 +89,8 @@ class ProfileComponent extends Component
 
         if($this->municipality_id && $this->province_id){
             $this->addresses = Address::where("municipality_id", $this->municipality_id)
-            ->where("province_id", $this->province_id)
-            ->orderBy("description", "asc")
-            ->get();
+                ->where("province_id", $this->province_id)
+                ->orderBy("description", "asc")->get();
         }
     }
 
@@ -168,8 +164,16 @@ class ProfileComponent extends Component
     public function update()
     {
         $this->validate();
+        $this->validate(['addressDesc' => 'exists:addresses,description'],
+        ['addressDesc.exists' => 'O endereço não existe, por favor clique no ícone (+).']
+    );
         try {
             DB::beginTransaction();
+
+            $address = Address::where("municipality_id", $this->municipality_id)
+                ->where("province_id", $this->province_id)
+                ->where("description", $this->addressDesc)->first();
+
             User::where("id", Auth::user()->id)->update([
                 "first_name" => $this->first_name,
                 "last_name" => $this->last_name,
@@ -178,7 +182,7 @@ class ProfileComponent extends Component
                 "birth_date" => $this->birth_date,
                 "phone" => $this->phone,
                 "nif" => $this->nif,
-                "address_id" => $this->address_id,
+                "address_id" => $address->id,
                 "province_id" => $this->province_id,
                 "municipality_id" => $this->municipality_id,
             ]);
@@ -200,6 +204,28 @@ class ProfileComponent extends Component
                 'html' => 'Erro ao realizar operação'
             ]);
         }
+    }
+
+    public function createAddress()
+    {
+        $this->validate([
+            'addressDesc' => 'required|string|max:255',
+            'province_id' => 'required|exists:provinces,id',
+            'municipality_id' => 'required|exists:municipalities,id',
+        ], [
+            'province_id.required' => 'O campo província é obrigatório.',
+            'province_id.exists' => 'A província selecionada não é válida.',
+            'municipality_id.required' => 'O campo município é obrigatório.',
+            'municipality_id.exists' => 'O município selecionado não é válido.',
+            'addressDesc.required' => 'O campo endereço é obrigatório.',
+        ]);
+
+        Address::create([
+            'description' => $this->addressDesc,
+            "province_id" => $this->province_id,
+            "municipality_id" => $this->municipality_id,
+        ]);
+
     }
 
     public function clear()

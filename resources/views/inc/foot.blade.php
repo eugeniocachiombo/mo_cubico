@@ -233,8 +233,12 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/datatablePT/dataTable.css') }}">
 <script src="{{ asset('assets/datatablePT/dataTable.js') }}"></script>
 
+
+
 <script>
     $(document).ready(function() {
+        var darkmode = "{{auth()->user()->getDarkMode ?? ''}}";
+
         $('.datatablePT').DataTable({
             "language": {
                 "sEmptyTable": "Nenhum registro encontrado",
@@ -261,7 +265,42 @@
             },
             "order": [
                 [0, 'desc']
-            ]
+            ],
+        drawCallback: function () {
+
+            $('.dataTables_empty').css({
+                'color': 'red',
+                'font-weight': 'bold',
+                'text-align': 'center'
+            });
+
+           
+            $('.dataTables_info').css('color', darkmode ? 'white' : '');
+
+            
+            $('.dataTables_filter label').css('color', darkmode ? 'white' : '');
+
+            $('.dataTables_paginate a').css('color', darkmode ? 'white' : '');
+
+             
+             $('.dataTables_paginate a').css({
+                'color': darkmode ? 'white' : '',
+                'font-weight': 'bold'
+            });
+
+            
+            $('.dataTables_length label').css({
+                'color': darkmode ? 'white' : '',
+                'font-weight': 'bold'
+            });
+
+            
+            $('.dataTables_length select').css({
+                'color': darkmode ? 'white' : '',
+                'background-color': darkmode ? 'black' : '',
+                'border': '1px solid #ccc'
+            });
+        }
         });
     });
 </script>

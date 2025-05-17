@@ -6,10 +6,10 @@
     <div class="container-fluid pt-4 px-4">
         <div class="row {{ auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }} rounded align-items-center justify-content-center mx-0" style="min-height: 65vh">
             <div class="row pt-4 pb-2">
+                <div class="col-6">
+                    <h4 class="{{ auth()->user()->getDarkMode ? '' : 'text-dark' }}"><span class="text-danger">Lista</span> de Imóveis</h4>
+                </div>
                 @if (!Gate::allows('inquilino'))
-                    <div class="col-6">
-                        <h4 class="{{ auth()->user()->getDarkMode ? '' : 'text-dark' }}">Lista de Imóveis</h4>
-                    </div>
                     <div class="col-6 d-flex justify-content-end ">
                         <button type="button" wire:click.prevent='clearFilds' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
                             <i class="fas fa-plus-circle"></i> Registrar
@@ -25,8 +25,8 @@
             <div class="col-12">
                 <div class="{{ auth()->user()->getDarkMode ? 'bg-secondary' : 'bg-white' }}">
                     <h6 class="mb-4"></h6>
-                    <div class="table-responsive">
-                        <table wire:ignore class="table table-hover datatablePT py-4">
+                    <div class="table-responsive" wire:ignore>
+                        <table class="table table-hover datatablePT py-4 {{ auth()->user()->getDarkMode ? 'text-white' : '' }}">
                             <thead>
                                 <tr class="bg-primary text-white">
                                     <th class="text-center" scope="col">#</th>

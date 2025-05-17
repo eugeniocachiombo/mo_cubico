@@ -124,7 +124,7 @@
                                                         <div class="col-md-6">
                                                             <label for="last_name">Sobrenome</label>
                                                             <input
-                                                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
+                                                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
                                                                 class="form-control" type="text"
                                                                 wire:model='last_name' name="last_name"
                                                                 id="last_name" />
@@ -136,8 +136,8 @@
                                                         <div class="col-md-6">
                                                             <label for="gender">Gênero</label>
                                                             <select
-                                                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
-                                                            class="form-select" wire:model='gender'
+                                                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background-color: transparent;' }}"
+                                                                class="form-select" wire:model='gender'
                                                                 name="gender" id="gender">
                                                                 <option value="">Selecione</option>
                                                                 <option value="Masculino">Masculino</option>
@@ -195,8 +195,8 @@
                                                         <div class="col-md-6">
                                                             <label class=" province_id">Província</label>
                                                             <select
-                                                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
-                                                            class="form-select" style="width: 100%"
+                                                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background-color: transparent;' }}"
+                                                                class="form-select" style="width: 100%"
                                                                 wire:change='get_local' wire:model='province_id'
                                                                 name="province_id" id="province_id">
                                                                 <option value="">Selecione</option>
@@ -214,8 +214,8 @@
                                                         <div class="col-md-6">
                                                             <label class=" municipality_id">Município</label>
                                                             <select
-                                                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
-                                                            class="form-select" wire:change='get_local'
+                                                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background-color: transparent;' }}"
+                                                                class="form-select" wire:change='get_local'
                                                                 wire:model='municipality_id' name="municipality_id"
                                                                 id="municipality_id">
                                                                 <option value="">Selecione</option>
@@ -230,22 +230,33 @@
                                                             @enderror
                                                         </div>
 
-                                                        <div class="col-md-6">
-                                                            <label class=" address_id">Morada</label>
-                                                            <select
-                                                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
-                                                            class="form-select" wire:model='address_id'
-                                                                name="address_id" id="address_id">
-                                                                <option value="">Selecione</option>
-                                                                @foreach ($addresses as $item)
-                                                                    <option value="{{ $item->id }}">
-                                                                        {{ $item->description }}</option>
+                                                        <div class="col-md-6 mb-3 position-relative">
+                                                            <label for="addressDesc" class="form-label">Morada</label>
+                                
+                                                            <input {{ $municipality_id ? '' : 'disabled' }} type="text" list="address_suggestions"
+                                                                wire:model.live="addressDesc" id="addressDesc"
+                                                                class="form-control {{ $municipality_id ? '' : 'bg-secondary' }}"
+                                                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background-color: transparent; margin-top:-8px' }}"
+                                                                placeholder="Digite o bairro ou endereço" />
+                                
+                                
+                                                            <datalist id="address_suggestions">
+                                                                @foreach ($addresses as $address)
+                                                                    <option value="{{ $address->description }}">{{ $address->description }}</option>
                                                                 @endforeach
-                                                            </select>
-
-                                                            @error('address_id')
-                                                                <span class="text-danger mt-2">{{ $message }}</span>
+                                                            </datalist>
+                                
+                                                            @error('addressDesc')
+                                                                <span class="text-danger">{{ $message }}</span>
                                                             @enderror
+                                
+                                
+                                                            @if ($addressDesc && !in_array($addressDesc, $addresses->pluck('description')->toArray()))
+                                                                <button type="button" class="btn btn-link position-absolute top-0 end-0 mt-3 me-2"
+                                                                    wire:click='createAddress' title="Adicionar novo endereço">
+                                                                    <i class="bi bi-plus-circle-fill text-primary fs-5"></i>
+                                                                </button>
+                                                            @endif
                                                         </div>
 
                                                         <div class="my-3 d-flex justify-content-end">
@@ -263,15 +274,15 @@
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade {{ $tab == 'palavra-passe' ? 'show active' : '' }} "
-                                                id="palavra-passe" role="tabpanel"
-                                                aria-labelledby="nav-profile-tab">
-                                                <h3 class="my-4 {{ auth()->user()->getDarkMode ? '' : 'text-dark' }}">Alterar Palavra-Passe</h3>
+                                                id="palavra-passe" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                                <h3 class="my-4 {{ auth()->user()->getDarkMode ? '' : 'text-dark' }}">
+                                                    Alterar Palavra-Passe</h3>
                                                 <hr>
                                                 <div class="row g-3 col-md-6">
                                                     <div class="col-md-7">
                                                         <label class="oldpassword">Antiga</label>
                                                         <input
-                                                        style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
+                                                            style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background: transparent;' }}"
                                                             wire:change='check_password' class="form-control"
                                                             type="password" wire:model='oldpassword'
                                                             name="oldpassword" id="oldpassword" />
@@ -333,14 +344,14 @@
 @push('scripts')
     <script>
         /*   $(document).ready(function() {
-                                        $('#province_id').select2({
-                                            theme: 'bootstrap-5',
-                                            width: "100%"
-                                        });
-                                        $('#province_id').on('change', function(e) {
-                                            @this.set('province_id', $('#province_id').select2("val"));
-                                            @this.get_local();
-                                        });
-                                    });*/
+                                            $('#province_id').select2({
+                                                theme: 'bootstrap-5',
+                                                width: "100%"
+                                            });
+                                            $('#province_id').on('change', function(e) {
+                                                @this.set('province_id', $('#province_id').select2("val"));
+                                                @this.get_local();
+                                            });
+                                        });*/
     </script>
 @endpush

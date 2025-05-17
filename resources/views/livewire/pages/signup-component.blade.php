@@ -41,7 +41,7 @@
                             <select wire:model="gender" 
                             style="border: 0.5px solid #222; 
                             color: black;
-                            background: transparent"
+                            background-color: transparent"
                             class="form-select" id="gender">
                                 <option value="">Selecione</option>
                                 <option value="Masculino">Masculino</option>
@@ -117,7 +117,7 @@
                             <select wire:model="access_id" 
                             style="border: 0.5px solid #222; 
                             color: black;
-                            background: transparent"
+                            background-color: transparent"
                             class="form-select" id="access_id">
                                 <option value="">Selecione</option>
                                 @foreach ($accesses as $item)
