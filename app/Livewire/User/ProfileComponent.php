@@ -81,7 +81,7 @@ class ProfileComponent extends Component
 
     public function get_local(){
 
-        if($this->province_id){
+        if($this->province_id && empty($this->municipality_id)){
             $this->municipalities = Municipality::where("province_id", $this->province_id)
             ->orderBy("description", "asc")
             ->get();

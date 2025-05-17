@@ -65,7 +65,7 @@
             </div>
             <div class="col-lg-4 wow fadeIn " data-wow-delay="0.1s">
                 <img class="img-fluid rounded mb-3 card-animated"
-                    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">
+                    src="{{asset('assets/images/homes/home1.jpeg')}}">
                 <p>
                     <i class="bi bi-arrow-down animate-up-down" style="font-size: 3rem;"></i>
                 </p>
@@ -77,7 +77,7 @@
             <div class="col-lg-4 wow fadeIn " data-wow-delay="0.3s" style="min-height: 500px;">
                 <div class="position-relative h-100">
                     <img class="position-absolute w-100 h-100 rounded card-animated"
-                        src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                        src="{{asset('assets/images/homes/home2.jpeg')}}"
                         style="object-fit: cover;">
                 </div>
             </div>
@@ -90,7 +90,7 @@
                     <i class="bi bi-arrow-up animate-up-down" style="font-size: 3rem;"></i>
                 </p>
                 <img class="img-fluid rounded card-animated"
-                    src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80">
+                    src="{{asset('assets/images/homes/home3.jpeg')}}">
             </div>
         </div>
 

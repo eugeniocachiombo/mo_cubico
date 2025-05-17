@@ -171,12 +171,12 @@
 
                         <!-- Botões -->
                         <div class="col-12 text-end">
-                            <button type="button" wire:click.prevent="{{ $edit == true ? 'update' : 'save' }}"
-                                wire:target="{{ $edit == true ? 'update' : 'save' }}"
+                            <button type="button" wire:click.prevent="submit"
+                                wire:target="submit"
                                 class="btn btn-primary px-4 py-2">
                                 <span wire:loading.remove
-                                    wire:target="{{ $edit == true ? 'update' : 'save' }}">Registrar</span>
-                                <span wire:loading wire:target="{{ $edit == true ? 'update' : 'save' }}">
+                                    wire:target="submit">Registrar</span>
+                                <span wire:loading wire:target="submit">
                                     <i class="fa fa-spinner fa-spin"></i> Registrar
                                 </span>
                             </button>

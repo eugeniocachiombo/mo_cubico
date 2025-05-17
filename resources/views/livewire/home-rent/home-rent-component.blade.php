@@ -49,13 +49,13 @@
                                             <div class="d-flex justify-content-center ">
                                                 @if ($home->photo)
                                                     <a href="{{ asset('storage/' . $home->photo) }}">
-                                                        <img class="rounded-circle"
+                                                        <img class=""
                                                             src="{{ asset('storage/' . $home->photo) }}"
-                                                            alt="Foto de perfil" style="width: 40px; height: 40px;">
+                                                            alt="Foto de perfil" style="width: 60px; height: 40px;">
                                                     </a>
                                                 @else
-                                                    <div class="d-flex justify-content-center align-items-center rounded-circle bg-secondary"
-                                                        style="width: 40px; height: 40px;">
+                                                    <div class="d-flex justify-content-center align-items-center bg-secondary"
+                                                        style="width: 60px; height: 40px;">
                                                         <i class="fa fa-images text-white"></i>
                                                     </div>
                                                 @endif

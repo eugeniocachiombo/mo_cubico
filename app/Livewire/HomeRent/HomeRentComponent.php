@@ -18,7 +18,7 @@ class HomeRentComponent extends Component
 {
     use WithFileUploads;
 
-    public $edit;
+    public $edit = false;
     public $home_id;
     public $title;
     public $description;
@@ -71,6 +71,10 @@ class HomeRentComponent extends Component
         'addressDesc.exists' => 'O endereço não existe, por favor clique no ícone (+).',
     ];
 
+    public function mount(){
+        $this->municipalities = Municipality::orderBy("description", "asc")->get();
+    }
+
     public function render()
     {
         $this->getLocal();
@@ -95,7 +99,7 @@ class HomeRentComponent extends Component
 
     public function getLocal()
     {
-        if ($this->province_id) {
+        if ($this->province_id && empty($this->municipality_id)) {
             $this->municipalities = Municipality::where("province_id", $this->province_id)
                 ->orderBy("description", "asc")->get();
         }
@@ -121,6 +125,14 @@ class HomeRentComponent extends Component
             'path' => '/imovéis/registros',
             'time' => 2000,
         ]);
+    }
+
+    public function submit(){
+        if ($this->edit) {
+            $this->update();
+        } else {
+            $this->save();
+        }
     }
 
     public function save()
@@ -187,10 +199,8 @@ class HomeRentComponent extends Component
         $this->owner = $home->owner;
         $this->responsible = Auth::user()->id;
         $this->province_id = $home->province_id;
-       $this->getLocal();
         $this->municipality_id = $home->municipality_id;
         $this->addressDesc = $home->getAddress->description;
-
     }
 
     public function update()
@@ -216,13 +226,14 @@ class HomeRentComponent extends Component
             $home->title = $this->title;
             $home->description = $this->description;
             $home->price = $priceFinal;
-            $home->photo = $photoPath;
+            if ($this->photo) {
+                $home->photo = $photoPath;
+            }
             $home->owner = $this->owner;
             $home->responsible = Auth::user()->id;
             $home->address_id = $address->id;
             $home->province_id = $this->province_id;
             $home->municipality_id = $this->municipality_id;
-            $home->status = 'pendente';
             $home->save();
 
             DB::commit();
@@ -306,7 +317,7 @@ class HomeRentComponent extends Component
 
     public function clearFilds()
     {
-        $this->edit = null;
+        $this->edit = false;
         $this->title = null;
         $this->description = null;
         $this->price = null;
