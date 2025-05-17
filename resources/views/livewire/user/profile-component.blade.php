@@ -236,7 +236,7 @@
                                                             <input {{ $municipality_id ? '' : 'disabled' }} type="text" list="address_suggestions"
                                                                 wire:model.live="addressDesc" id="addressDesc"
                                                                 class="form-control {{ $municipality_id ? '' : 'bg-secondary' }}"
-                                                                style="{{ auth()->user()->getDarkMode ? '' : 'border: 0.5px solid #222; color: black; background-color: transparent; margin-top:-8px' }}"
+                                                                style="{{ auth()->user()->getDarkMode ? 'margin-top:-8px' : 'border: 0.5px solid #222; color: black; background-color: transparent; margin-top:-8px' }}"
                                                                 placeholder="Digite o bairro ou endereço" />
                                 
                                 
@@ -250,8 +250,7 @@
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                 
-                                
-                                                            @if ($addressDesc && !in_array($addressDesc, $addresses->pluck('description')->toArray()))
+                                                            @if ($addressDesc && !in_array($addressDesc, collect($addresses)->pluck('description')->toArray()))
                                                                 <button type="button" class="btn btn-link position-absolute top-0 end-0 mt-3 me-2"
                                                                     wire:click='createAddress' title="Adicionar novo endereço">
                                                                     <i class="bi bi-plus-circle-fill text-primary fs-5"></i>

@@ -122,8 +122,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
 
-
-                            @if ($addressDesc && !in_array($addressDesc, $addresses->pluck('description')->toArray()))
+                            @if ($addressDesc && !in_array($addressDesc, collect($addresses)->pluck('description')->toArray()))
                                 <button type="button" class="btn btn-link position-absolute top-0 end-0 mt-4 me-2"
                                     wire:click='createAddress' title="Adicionar novo endereço">
                                     <i class="bi bi-plus-circle-fill text-primary fs-5"></i>
