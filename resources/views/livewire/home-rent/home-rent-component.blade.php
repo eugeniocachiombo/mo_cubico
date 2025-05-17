@@ -140,7 +140,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center">Nenhum imóvel encontrado.</td>
+                                        <td colspan="7" class="text-center">Nenhum imóvel encontrado.</td>
                                     </tr>
                                 @endforelse
                             </tbody>
