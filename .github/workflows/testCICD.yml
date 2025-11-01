@@ -1,0 +1,16 @@
+name: CI_teste
+
+on: 
+    push:
+        branches:
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        
+        steps:
+            - name: baixar o local
+              uses: actions/checkout@v2
+
+
