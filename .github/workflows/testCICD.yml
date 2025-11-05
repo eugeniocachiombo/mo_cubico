@@ -19,6 +19,6 @@ jobs:
                 server: f28-preview.awardspace.net
                 username: ${{ secrets.ftp_username }}
                 password: ${{ secrets.ftp_password }}
-                server-dir: /home/www/mocubico.atwebpages.com
+                server-dir: /mocubico.atwebpages.com
 
 
