@@ -19,7 +19,7 @@ jobs:
                 server: f28-preview.awardspace.net
                 username: ${{ secrets.FTP_USERNAME }}
                 password: ${{ secrets.FTP_PASSWORD }}
-                server-dir: /
+                server-dir: /home/www/mo-cubico
                 protocol: ftp
                 port: 21
 
